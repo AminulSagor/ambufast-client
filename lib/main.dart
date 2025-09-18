@@ -1,5 +1,6 @@
 import 'package:ambufast/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +15,7 @@ Future<Locale> _loadInitialLocale() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final initialLocale = await _loadInitialLocale();
+  await dotenv.load(fileName: ".env");
   runApp(AmbuFastApp(initialLocale: initialLocale));
 }
 

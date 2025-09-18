@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'create_account_controller.dart';
+import 'package:flutter/services.dart';
 
 class CreateAccountView extends GetView<CreateAccountController> {
   const CreateAccountView({super.key});
@@ -69,33 +70,33 @@ class CreateAccountView extends GetView<CreateAccountController> {
                 ),
                 SizedBox(height: 14.h),
 
-                // DOB
+                // ===== DOB (Text input + Calendar) =====
                 Text('dob'.tr),
                 SizedBox(height: 6.h),
-                Obx(() {
-                  final value = controller.dob.value;
-                  return InkWell(
-                    onTap: () => controller.pickDob(context),
-                    borderRadius: BorderRadius.circular(10.r),
-                    child: InputDecorator(
-                      decoration: _outlined(),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            value == null
-                                ? 'select'.tr
-                                : '${value.day.toString().padLeft(2, '0')}-'
-                                '${value.month.toString().padLeft(2, '0')}-'
-                                '${value.year}',
-                            style: TextStyle(fontSize: 14.sp, color: Colors.black87),
-                          ),
-                          const Icon(Icons.calendar_today_outlined, size: 18),
-                        ],
-                      ),
+
+                // NOTE: removed Obx here to avoid "improper use of Obx"
+                TextFormField(
+                  controller: controller.dobTextCtrl,
+                  keyboardType: TextInputType.datetime,
+                  textInputAction: TextInputAction.next,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9/\-]')),
+                  ],
+                  decoration: _input('dd-MM-yyyy').copyWith(
+                    suffixIcon: IconButton(
+                      tooltip: 'select'.tr,
+                      icon: const Icon(Icons.calendar_today_outlined),
+                      onPressed: () => controller.pickDob(context),
                     ),
-                  );
-                }),
+                  ),
+                  validator: (v) {
+                    // controller.dob is kept in sync by controller.dobTextCtrl listener
+                    if (controller.dob.value == null) {
+                      return 'invalid_msg'.tr; // or a dedicated 'invalid_dob' key
+                    }
+                    return null;
+                  },
+                ),
                 SizedBox(height: 14.h),
 
                 // Gender
@@ -137,18 +138,17 @@ class CreateAccountView extends GetView<CreateAccountController> {
                 // Password
                 Text('password'.tr),
                 SizedBox(height: 6.h),
+                // lib/modules/account/create_account_view.dart
+
+// Password
                 Obx(() => TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction, // optional but recommended
                   controller: controller.passwordCtrl,
                   obscureText: controller.obscurePass.value,
                   decoration: _input('hint_password'.tr).copyWith(
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        controller.obscurePass.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () => controller.obscurePass.value =
-                      !controller.obscurePass.value,
+                      icon: Icon(controller.obscurePass.value ? Icons.visibility_off : Icons.visibility),
+                      onPressed: () => controller.obscurePass.value = !controller.obscurePass.value,
                     ),
                   ),
                   validator: (v) {
@@ -158,41 +158,36 @@ class CreateAccountView extends GetView<CreateAccountController> {
                   },
                 )),
                 SizedBox(height: 14.h),
-
-                // Confirm password
                 Text('confirm_password'.tr),
                 SizedBox(height: 6.h),
+// Confirm password
                 Obx(() => TextFormField(
+                  key: controller.confirmFieldKey,                     // <-- attach the key
+                  autovalidateMode: AutovalidateMode.onUserInteraction, // optional but recommended
                   controller: controller.confirmCtrl,
                   obscureText: controller.obscureConfirm.value,
                   decoration: _input('hint_confirm_password'.tr).copyWith(
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        controller.obscureConfirm.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      onPressed: () => controller.obscureConfirm.value =
-                      !controller.obscureConfirm.value,
+                      icon: Icon(controller.obscureConfirm.value ? Icons.visibility_off : Icons.visibility),
+                      onPressed: () =>
+                      controller.obscureConfirm.value = !controller.obscureConfirm.value,
                     ),
                   ),
                   validator: (v) {
                     if (v == null || v.isEmpty) return 'req_field'.tr;
-                    if (v != controller.passwordCtrl.text) {
-                      return 'password_mismatch'.tr;
-                    }
+                    if (v != controller.passwordCtrl.text) return 'password_mismatch'.tr;
                     return null;
                   },
                 )),
+
                 SizedBox(height: 22.h),
 
-                // Next (enabled only when form valid)
-                // Next (enabled only when form valid)
+                // Next
                 SizedBox(
                   width: double.infinity,
                   height: 52.h,
                   child: Obx(() {
-                    final enabled = controller.canSubmit.value; // ⬅️ use reactive RxBool
+                    final enabled = controller.canSubmit.value;
                     return ElevatedButton(
                       onPressed: enabled ? () => controller.onNext(context) : null,
                       style: ElevatedButton.styleFrom(
@@ -220,7 +215,6 @@ class CreateAccountView extends GetView<CreateAccountController> {
                     );
                   }),
                 ),
-
               ],
             ),
           ),
@@ -249,13 +243,11 @@ class CreateAccountView extends GetView<CreateAccountController> {
   InputDecoration _input(String hint) => InputDecoration(
     hintText: hint,
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
-    contentPadding:
-    EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
   );
 
   InputDecoration _outlined() => InputDecoration(
     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.r)),
-    contentPadding:
-    EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
   );
 }

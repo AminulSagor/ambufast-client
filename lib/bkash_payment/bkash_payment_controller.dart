@@ -15,7 +15,7 @@ class BkashPaymentController extends GetxController {
   @override
   void onInit() {
     final args = (Get.arguments as Map?) ?? const {};
-    merchant = (args['merchant'] as String?) ?? 'ambufast';
+    merchant = (args['merchant'] as String?) ?? 'AmbuFast';
     invoice  = (args['invoice'] as String?) ?? '0000000000000';
     amount   = (args['amount'] as int?) ?? 0;
     super.onInit();

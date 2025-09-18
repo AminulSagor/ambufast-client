@@ -61,9 +61,11 @@ class AppPages {
       name: Routes.login,
       page: () => const LoginView(),
       binding: BindingsBuilder(() {
+        // ✅ Add fenix: true so a fresh LoginController is recreated
         Get.lazyPut<LoginController>(() => LoginController());
       }),
     ),
+
 
     GetPage(
       name: Routes.recover,

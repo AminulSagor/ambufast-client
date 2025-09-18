@@ -180,40 +180,42 @@ class VerifyView extends GetView<VerifyController> {
 
               // Verify button
               // Verify button
+              // lib/modules/verify/verify_view.dart  (inside the button)
               SizedBox(
                 width: double.infinity,
                 height: 52.h,
-                child: ElevatedButton(
-                  onPressed: controller.verify,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF43023),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.r),
+                child: Obx(() {
+                  final loading = controller.isVerifying.value;
+                  return ElevatedButton(
+                    onPressed: loading ? null : controller.verify,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF43023),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
                     ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'verify_btn'.tr,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (loading) ...[
+                          SizedBox(
+                            width: 18.w, height: 18.w,
+                            child: const CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                          ),
+                          SizedBox(width: 10.w),
+                        ],
+                        Text(
+                          'verify_btn'.tr,
+                          style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700, color: Colors.white),
                         ),
-                      ),
-                      SizedBox(width: 10.w),
-                      Image.asset(
-                        'assets/icon/justify.png',
-                        width: 20.w,
-                        height: 20.w,
-                        // if you ever need to force it white, uncomment the next line:
-                        // color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
+                        if (!loading) ...[
+                          SizedBox(width: 10.w),
+                          Image.asset('assets/icon/justify.png', width: 20.w, height: 20.w),
+                        ],
+                      ],
+                    ),
+                  );
+                }),
               ),
+
 
             ],
           ),

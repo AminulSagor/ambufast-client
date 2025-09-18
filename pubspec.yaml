@@ -19,6 +19,7 @@ dependencies:
   geocoding:
   file_picker:
   dotted_border: ^2.1.0
+  flutter_dotenv:
 
 
 dev_dependencies:
@@ -35,6 +36,7 @@ flutter:
     - assets/icon/home_page_icon/
     - assets/bottom_navigation/
     - assets/ride_icons/
+    - .env
 
 
 flutter_native_splash:

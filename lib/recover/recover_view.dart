@@ -64,6 +64,7 @@ class RecoverView extends GetView<RecoverController> {
               SizedBox(height: 20.h),
 
               // Title + subtitle
+              // Title + subtitle
               Center(
                 child: Column(
                   children: [
@@ -77,18 +78,26 @@ class RecoverView extends GetView<RecoverController> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8.h),
-                    Text(
-                      'recover_subtitle'.tr,
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        color: Colors.black54,
-                        height: 1.35,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+
+                    // ✅ Dynamic subtitle
+                    Obx(() {
+                      final isPhone = controller.tabIndex.value == 0;
+                      return Text(
+                        isPhone
+                            ? 'recover_subtitle_phone'.tr
+                            : 'recover_subtitle_email'.tr,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          color: Colors.black54,
+                          height: 1.35,
+                        ),
+                        textAlign: TextAlign.center,
+                      );
+                    }),
                   ],
                 ),
               ),
+
 
               SizedBox(height: 20.h),
 

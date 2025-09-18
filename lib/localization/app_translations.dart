@@ -45,8 +45,8 @@ class AppTranslations extends Translations {
 
       // ----- Recover Password -----
       'recover_title': 'Recover Password',
-      'recover_subtitle':
-      'Please enter the phone number you used during registration to proceed with resetting your password.',
+      'recover_subtitle_phone': 'Please enter the phone number you used during registration to proceed with resetting your password.',
+      'recover_subtitle_email': 'Please enter the email address you used during registration to proceed with resetting your password.',
       'send_otp': 'Send OTP',
       'have_account_q': 'Have an account?',
 
@@ -63,7 +63,7 @@ class AppTranslations extends Translations {
       'timer_mm_ss': '%s:%s',
 
       // ----- Create Account -----
-      'create_account_title': 'Create Account',
+      'create_account_title': 'Create Your AmbuFast Account',
       'full_name': 'Full Name*',
       'hint_full_name': 'Enter full name',
       'dob': 'Date of Birth*',
@@ -321,7 +321,7 @@ class AppTranslations extends Translations {
       'service_freezing': 'Freezing Van',
       'service_row_sub': 'Request a ride, hop-in, and go',
 
-
+      'signup_subtitle': 'Sign up or book emergency service in seconds.',
 
 
 
@@ -369,8 +369,8 @@ class AppTranslations extends Translations {
 
       // ----- Recover Password -----
       'recover_title': 'পাসওয়ার্ড পুনরুদ্ধার করুন',
-      'recover_subtitle':
-      'আপনার পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ফোন নম্বরটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
+      'recover_subtitle_phone': 'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ফোন নম্বরটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
+      'recover_subtitle_email': 'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ইমেইল ঠিকানাটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
       'send_otp': 'OTP পাঠান',
       'have_account_q': 'আপনার একটি অ্যাকাউন্ট আছে?',
 
@@ -387,7 +387,7 @@ class AppTranslations extends Translations {
       'timer_mm_ss': '%s:%s',
 
       // ----- Create Account -----
-      'create_account_title': 'অ্যাকাউন্ট তৈরি করুন',
+      'create_account_title': 'আপনার AmbuFast অ্যাকাউন্ট তৈরি করুন',
       'full_name': 'পূর্ণ নাম*',
       'hint_full_name': 'পূর্ণ নাম প্রবেশ করুন',
       'dob': 'জন্ম তারিখ*',
@@ -631,7 +631,7 @@ class AppTranslations extends Translations {
       'service_freezing': 'ফ্রিজিং ভ্যান',
       'service_row_sub': 'যাত্রার অনুরোধ করুন, লাফিয়ে উঠুন এবং যান',
 
-
+      'signup_subtitle': 'সেকেন্ডের মধ্যে সাইন আপ করুন বা জরুরি সেবা বুক করুন।',
 
     },
   };

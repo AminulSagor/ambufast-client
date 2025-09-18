@@ -81,7 +81,10 @@ class LaunchScreenView extends StatelessWidget {
                     width: double.infinity,
                     height: 48.h,
                     child: ElevatedButton(
-                      onPressed: () => Get.toNamed(Routes.requestRide),
+                      onPressed: () => Get.toNamed(
+                        Routes.login,
+                        arguments: {'intent': 'register'}, // <-- pass flag
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,

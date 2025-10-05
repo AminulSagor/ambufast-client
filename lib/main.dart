@@ -6,22 +6,47 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'localization/app_translations.dart';
 
+// Load saved locale from SharedPreferences
 Future<Locale> _loadInitialLocale() async {
   final sp = await SharedPreferences.getInstance();
   final code = sp.getString('lang_code') ?? 'en';
   return code == 'bn' ? const Locale('bn', 'BD') : const Locale('en', 'US');
 }
 
-void main() async {
+// Entry point
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 1️⃣ load locale
   final initialLocale = await _loadInitialLocale();
+
+  // 2️⃣ load .env
   await dotenv.load(fileName: ".env");
-  runApp(AmbuFastApp(initialLocale: initialLocale));
+
+  // 3️⃣ check if token exists
+  final sp = await SharedPreferences.getInstance();
+  final hasToken = sp.getString('auth_token') != null;
+
+  // 4️⃣ decide initial route
+  final initialRoute = hasToken ? '/home' : AppPages.initial;
+
+  runApp(
+    AmbuFastApp(
+      initialLocale: initialLocale,
+      initialRoute: initialRoute,
+    ),
+  );
 }
 
 class AmbuFastApp extends StatelessWidget {
   final Locale initialLocale;
-  const AmbuFastApp({super.key, required this.initialLocale});
+  final String initialRoute;
+
+  const AmbuFastApp({
+    super.key,
+    required this.initialLocale,
+    required this.initialRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +57,15 @@ class AmbuFastApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'AmbuFast',
           translations: AppTranslations(),
-          locale: initialLocale, // ← uses saved locale
+          locale: initialLocale,
           fallbackLocale: const Locale('en', 'US'),
-          initialRoute: AppPages.initial,
+          initialRoute: initialRoute, // 👈 dynamic route here
           getPages: AppPages.routes,
-
-          // 👇 theme only for screen background
           theme: ThemeData(
-            scaffoldBackgroundColor: const Color(0xFFFAFFFB), // your bg color
+            scaffoldBackgroundColor: const Color(0xFFFAFFFB),
           ),
         );
       },
     );
   }
 }
-

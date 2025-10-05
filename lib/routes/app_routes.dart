@@ -17,5 +17,12 @@ abstract class Routes {
   static const supportRequestReview = '/support-request-review';
   static const requestSubmissionSuccess = '/request-submission-success';
   static const requestRide = '/request-ride';
+  static const account = '/account';
+  static const profileDetails = '/profile-details';
+  static const editProfileDetails = '/edit-profile-details';
+  static const allReview = '/all-review';
+  static const selectLanguage = '/select-language';
+  static const emergencySos = '/emergency-sos';
+  static const myDonationRequest = '/my-donation-request';
 
 }

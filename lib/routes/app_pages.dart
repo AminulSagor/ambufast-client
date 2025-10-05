@@ -1,14 +1,22 @@
 // lib/routes/app_pages.dart
 import 'package:get/get.dart';
 
+import '../account/account_controller.dart';
+import '../account/account_view.dart';
 import '../account/create_account_controller.dart';
 import '../account/create_account_view.dart';
+import '../all_review/all_review_controller.dart';
+import '../all_review/all_review_view.dart';
 import '../bkash_payment/bkash_payment_controller.dart';
 import '../bkash_payment/bkash_payment_view.dart';
 import '../donate/donate_money_controller.dart';
 import '../donate/donate_money_view.dart';
 import '../donate_payment_setection/support_payment_controller.dart';
 import '../donate_payment_setection/support_payment_view.dart';
+import '../edit_profile_details/edit_profile_details_controller.dart';
+import '../edit_profile_details/edit_profile_details_view.dart';
+import '../emergency_sos/emergency_sos_controller.dart';
+import '../emergency_sos/emergency_sos_view.dart';
 import '../home/home_controller.dart';
 import '../home/home_view.dart';
 import '../language/language_controller.dart';
@@ -16,14 +24,20 @@ import '../launch/launch_screen_controller.dart';
 import '../launch/launch_screen_view.dart';
 import '../login/login_controller.dart';
 import '../login/login_view.dart';
+import '../my_donation_request/my_donation_request_controller.dart';
+import '../my_donation_request/my_donation_request_view.dart';
 import '../payment_success/payment_success_controller.dart';
 import '../payment_success/payment_success_view.dart';
+import '../profile_details/profile_details_controller.dart';
+import '../profile_details/profile_details_view.dart';
 import '../recover/recover_controller.dart';
 import '../recover/recover_view.dart';
 import '../request_submission_success/request_submission_success_controller.dart';
 import '../request_submission_success/request_submission_success_view.dart';
 import '../ride/request_ride_controller.dart';
 import '../ride/request_ride_view.dart';
+import '../select_language/select_language_controller.dart';
+import '../select_language/select_language_view.dart';
 import '../set_password/set_password_controller.dart';
 import '../set_password/set_password_view.dart';
 import '../support_request/support_request_controller.dart';
@@ -172,6 +186,79 @@ class AppPages {
       }),
     ),
 
+    GetPage(
+      name: Routes.account,
+      page: () => const AccountView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<AccountController>(() => AccountController());
+      }),
+    ),
+
+
+    GetPage(
+      name: Routes.profileDetails,
+      page: () => const ProfileDetailsView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<ProfileDetailsController>()) {
+          Get.delete<ProfileDetailsController>(force: true);
+        }
+        Get.put(ProfileDetailsController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.editProfileDetails,
+      page: () => const EditProfileDetailsView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<EditProfileDetailsController>()) {
+          Get.delete<EditProfileDetailsController>(force: true);
+        }
+        Get.put(EditProfileDetailsController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.allReview,
+      page: () => const AllReviewView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<AllReviewController>()) {
+          Get.delete<AllReviewController>(force: true);
+        }
+        Get.put(AllReviewController());
+      }),
+    ),
+    GetPage(
+      name: Routes.selectLanguage,
+      page: () => const SelectLanguageView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<SelectLanguageController>()) {
+          Get.delete<SelectLanguageController>(force: true);
+        }
+        Get.put(SelectLanguageController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.emergencySos,
+      page: () => const EmergencySosView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<EmergencySosController>()) {
+          Get.delete<EmergencySosController>(force: true);
+        }
+        Get.put(EmergencySosController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.myDonationRequest,
+      page: () => const MyDonationRequestView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<MyDonationRequestController>()) {
+          Get.delete<MyDonationRequestController>(force: true);
+        }
+        Get.put(MyDonationRequestController());
+      }),
+    ),
 
   ];
 }

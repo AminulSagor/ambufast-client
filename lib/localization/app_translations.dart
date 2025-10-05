@@ -9,7 +9,7 @@ class AppTranslations extends Translations {
       // ----- Common -----
       'back': 'Back',
       'powered':
-      'Powered By SafeCare24/7 Medical Services Limited\nBeta Version 1.0',
+          'Powered By SafeCare24/7 Medical Services Limited\nBeta Version 1.0',
       'choose': 'Choose',
       'done': 'Done',
       'select': 'Select',
@@ -17,7 +17,7 @@ class AppTranslations extends Translations {
       // ----- Welcome -----
       'welcome_title': 'Welcome to AmbuFast',
       'welcome_subtitle':
-      'The largest ambulance network and ride sharing platform in Bangladesh',
+          'The largest ambulance network and ride sharing platform in Bangladesh',
       'login': 'Login',
       'create_account': 'Create Account',
 
@@ -45,17 +45,19 @@ class AppTranslations extends Translations {
 
       // ----- Recover Password -----
       'recover_title': 'Recover Password',
-      'recover_subtitle_phone': 'Please enter the phone number you used during registration to proceed with resetting your password.',
-      'recover_subtitle_email': 'Please enter the email address you used during registration to proceed with resetting your password.',
+      'recover_subtitle_phone':
+          'Please enter the phone number you used during registration to proceed with resetting your password.',
+      'recover_subtitle_email':
+          'Please enter the email address you used during registration to proceed with resetting your password.',
       'send_otp': 'Send OTP',
       'have_account_q': 'Have an account?',
 
       // ----- Verify OTP -----
       'verify_title': 'Verify Your Account',
       'verify_subtitle_phone':
-      'We’ve sent a one-time password (OTP) to your phone number. Please enter the code below to complete verification.',
+          'We’ve sent a one-time password (OTP) to your phone number. Please enter the code below to complete verification.',
       'verify_subtitle_email':
-      'We’ve sent a one-time password (OTP) to your email address. Please enter the code below to complete verification.',
+          'We’ve sent a one-time password (OTP) to your email address. Please enter the code below to complete verification.',
       'resend_otp': 'Resend OTP',
       'change_phone': 'Change Phone Number',
       'change_email': 'Change Email',
@@ -72,6 +74,7 @@ class AppTranslations extends Translations {
       'female': 'Female',
       'others': 'Others',
       'blood_group': 'Blood Group*',
+      'blood_group_p': 'Blood Group',
       'password': 'Password',
       'confirm_password': 'Confirm Password',
       'hint_confirm_password': 'Enter confirm password',
@@ -88,7 +91,7 @@ class AppTranslations extends Translations {
       // ----- Set New Password -----
       'setpw_title': 'Set New Password',
       'setpw_subtitle':
-      'Your new password should be strong and easy for you to remember.',
+          'Your new password should be strong and easy for you to remember.',
       'pw': 'Password',
       'confirm_pw': 'Confirm Password',
       'hint_pw': 'Enter password',
@@ -134,18 +137,18 @@ class AppTranslations extends Translations {
 
       'home_last_ride_title': 'Last Ride with Respect',
       'home_last_ride_body':
-      'Your donation ensures a dignified final journey for those who cannot afford funeral transport.',
+          'Your donation ensures a dignified final journey for those who cannot afford funeral transport.',
       'home_support_now': 'Support Now',
 
       'home_funeral_support_title': 'Last Ride with Respect',
       'home_funeral_support_body':
-      'If your family is struggling with funeral transport costs, apply for our donation-based service to ensure a respectful farewell.',
+          'If your family is struggling with funeral transport costs, apply for our donation-based service to ensure a respectful farewell.',
       'home_request_support': 'Request Support',
 
       //.........enable_location............
       'loc_enable_title': 'Enable your location',
       'loc_enable_subtitle':
-      'Choose your location to start find the request around you',
+          'Choose your location to start find the request around you',
       'loc_use_my_location': 'Use my location',
       'loc_skip': 'Skip for now',
 
@@ -160,7 +163,7 @@ class AppTranslations extends Translations {
       'review': 'Review',
       'validation_title': 'Validation',
       'validation_support_msg':
-      'Please select a cause, set an amount and agree to the terms.',
+          'Please select a cause, set an amount and agree to the terms.',
 
       // Cause labels
       'cause_general_fund': 'General Fund',
@@ -202,8 +205,10 @@ class AppTranslations extends Translations {
       'cancel': 'Cancel',
       'confirm': 'Confirm',
 
-      'payment_success_title': 'Payment Successful!\nYour Vehicle booking is confirmed.',
-      'payment_success_body': 'We’ve received your booking payment of ৳@amount. Your Vehicle is on its way to your pickup location on time.',
+      'payment_success_title':
+          'Payment Successful!\nYour Vehicle booking is confirmed.',
+      'payment_success_body':
+          'We’ve received your booking payment of ৳@amount. Your Vehicle is on its way to your pickup location on time.',
       'go_to_my_activity': 'Go to My Activity',
       'back_to_home': 'Back to home',
 
@@ -211,7 +216,8 @@ class AppTranslations extends Translations {
       'request_support_title': 'Support Request',
       'request_support_step': 'Step 1 of 2',
       'start_a_request': 'Start A Request',
-      'start_a_request_hint': 'Tell us what you need help with. You can upload bills or prescriptions for faster approval.',
+      'start_a_request_hint':
+          'Tell us what you need help with. You can upload bills or prescriptions for faster approval.',
 
       'request_cause': 'Request Cause*',
       'amount_needed': 'Amount Needed*',
@@ -234,10 +240,11 @@ class AppTranslations extends Translations {
       'click_to_upload_back': 'Click to Upload Back Side of Card',
       'max_file_size_25': '(Max. File size: 25 MB)',
 
-      'agree_verification': 'By submitting, you agree to our verification process and terms.',
+      'agree_verification':
+          'By submitting, you agree to our verification process and terms.',
       'continue': 'Continue',
 
-// validation
+      // validation
       'vs_select_cause': 'Please select a request cause.',
       'vs_amount': 'Please enter a valid amount.',
       'vs_urgency': 'Please select urgency.',
@@ -248,11 +255,11 @@ class AppTranslations extends Translations {
       'file_too_large': 'File is larger than allowed size.',
       'file_type_invalid': 'Only JPG/PNG allowed.',
 
-
       // ===== EN =====
       'request_review_title': 'Request Review',
       'confirm_request': 'Confirm Your Request',
-      'confirm_request_hint': 'Double-check details before submitting. You can always edit items below.',
+      'confirm_request_hint':
+          'Double-check details before submitting. You can always edit items below.',
       'step_2_of_2': 'Step 2 of 2',
 
       'rr_cause': 'Cause',
@@ -269,14 +276,13 @@ class AppTranslations extends Translations {
       'rr_doc_back_id': 'Back ID',
       'rr_within_24h': 'Within 24 Hours',
 
-
       // ===== EN =====
       'rs_success_title': "You're all set",
-      'rs_success_body': "Your request has been submitted for review.\nWe'll notify you as soon as it's approved.",
+      'rs_success_body':
+          "Your request has been submitted for review.\nWe'll notify you as soon as it's approved.",
       'rs_estimated_label': 'Estimated: under 6 hours',
       'rs_go_to_activity': 'Go to My Activity',
       'rs_back_home': 'Back to home',
-
 
       // ----- Request Ride -----
       'request_ride_title': 'Request a Ride',
@@ -292,18 +298,15 @@ class AppTranslations extends Translations {
 
       // ----- Request Ride (places) -----
       'place_airport_title': 'Hazrat Shahjalal International Airport',
-      'place_airport_sub':   'Airport - Dakshinkhan Rd, Dhaka',
+      'place_airport_sub': 'Airport - Dakshinkhan Rd, Dhaka',
 
-      'place_jfp_title':     'Jamuna Future Park',
-      'place_jfp_sub':       'KA-244, Kuril, Progoti Shoroni, Dhaka',
+      'place_jfp_title': 'Jamuna Future Park',
+      'place_jfp_sub': 'KA-244, Kuril, Progoti Shoroni, Dhaka',
 
-      'place_bcity_title':   'Bashundhara City Shopping Complex',
-      'place_bcity_sub':     '3 No Tejturi Bazar West, পল্লব পথ, ঢাকা',
+      'place_bcity_title': 'Bashundhara City Shopping Complex',
+      'place_bcity_sub': '3 No Tejturi Bazar West, পল্লব পথ, ঢাকা',
 
-
-
-
-// ----- Bottom sheets (When / Contact / Service) -----
+      // ----- Bottom sheets (When / Contact / Service) -----
       'when_sheet_title': 'When do you need a ride?',
       'when_now_title': 'Now',
       'when_now_sub': 'Request a ride, hop-in, and go',
@@ -322,10 +325,133 @@ class AppTranslations extends Translations {
       'service_row_sub': 'Request a ride, hop-in, and go',
 
       'signup_subtitle': 'Sign up or book emergency service in seconds.',
+      // Common
+      'account': 'Account',
+      'good_morning': 'Good Morning,',
+      'rating': '5.0',
 
+      // Sections
+      'profile_summary': 'Profile Summary',
+      'settings_prefs': 'Settings & Preferences',
+      'security_privacy': 'Security & Privacy',
+      'support_legal': 'Support & Legal',
 
+      // Items
+      'profile': 'Profile',
+      'reviews': 'Reviews',
+      'my_booking': 'My Booking',
+      'my_donation_request': 'My Donation & Request',
+      'save_address': 'Save Address',
+      'language': 'Language',
+      'notification': 'Notification',
+      'change_password': 'Change Password',
+      'tap_emergency_sos': 'Tap Emergency SOS',
+      'help_center_faqs': 'Help Center / FAQs',
 
+      'cancellation_policy': 'Cancellation Policy',
+      'terms_conditions': 'Terms & Conditions',
+      'privacy_policy': 'Privacy Policy',
+      'logout': 'Logout',
+      'english_us': 'English (US)',
 
+      'profile_details': 'Profile details',
+      'basic_information': 'Basic Information',
+      'member_since': 'Member since',
+      'name': 'Name',
+      'date_of_birth': 'Date Of Birth',
+      'gender': 'Gender',
+
+      'contact_information': 'Contact information',
+      'phone': 'Phone',
+      'email': 'Email',
+      'street_addresse': 'Street address',
+      'apartment_suite_unit': 'Apartment, Suite, Unit',
+      'city': 'City',
+      'state': 'State',
+      'zip_code': 'Zip Code',
+      'country': 'Country',
+      'edit': 'Edit',
+      'edit_profile_details': 'Edit profile details',
+      // Actions
+      'update': 'Update',
+      'upload_profile_photo': 'Upload profile photo',
+      // Common options
+      'other': 'Other',
+      // Logout confirm (your bottom sheet)
+      'are_you_sure': 'Are you sure?',
+      'logout_confirm_message':
+          'Are you sure you want to log out? You might miss important trips.',
+      'yes_logout': 'Yes, Logout',
+
+      // screen & sections
+      'email_address': 'Email Address',
+      'apartment_suite_unit_optional': 'Apartment, Suite, Unit (optional)',
+
+      // validation / feedback
+      'required_field': 'This field is required',
+      'success': 'Success',
+      'profile_updated_successfully': 'Profile updated successfully',
+      'select_blood_group': 'Select blood Group',
+      'select_gender': 'Select Gender',
+      'select_state': 'Select State',
+      'select_country': 'Select Country',
+
+      'all_review': 'All Review',
+
+      // sample titles & body used above
+      'good_ride_title': 'Good Ride, but can be great!',
+      'great_ride_title': 'Great ride',
+      'bad_ride_title': 'Bad ride',
+      'review_body_sample':
+          'I think the exterior and interior is much nicer than other ambulance in its class.',
+
+      'language_title': 'Language',
+      'language_updated': 'Language updated',
+
+      // List labels (kept to match screenshot)
+      'english_uk': 'English (UK)',
+      'mandarin': 'Mandarin',
+      'spanish': 'Spanish',
+      'french': 'French',
+      'arabic': 'Arabic',
+      'bengali': 'Bengali',
+      'russian': 'Russian',
+      'japanese': 'Japanese',
+      'korean': 'Korean',
+      'indonesian': 'Indonesia',
+      'indian': 'Indian',
+      'germany': 'Germany',
+      'chainish': 'Chainish',
+
+      'emergency_sos_title': 'Tap Emergency SOS',
+      'error': 'Error',
+      'call_failed': 'Could not open dialer',
+
+      'my_donation_request_title': 'My Donation & Request',
+      'support_tab': 'Support',
+      'request_tab': 'Request',
+      'search_by_date': 'Search by date',
+      'total_support': 'Total Donation',
+      'receipt': 'Receipt',
+      'pending': 'Pending',
+      'approved': 'Approved',
+      'rejected': 'Rejected',
+      'ambulance_fare': 'Ambulance Fare',
+
+      // ===== en_US additions =====
+      'enter_full_name': 'Enter full name',
+      'yyyy-mm-dd': 'YYYY-MM-DD',
+      'dd-mm-yyyy': 'DD-MM-YYYY',
+      'enter_phone': 'Enter phone number',
+      'street_address': 'Street address', // fixes the earlier typo
+      'enter_street_address': 'Enter street address',
+      'apt_suite_unit': 'Apartment, Suite, Unit',
+      'enter_city': 'Enter city',
+      'enter_zip_code': 'Enter ZIP code',
+
+      // ===== en_US =====
+      'update_success_title': 'Update successfully',
+      'update_success_body': 'Your profile has been updated successfully',
     },
 
     // ======================= BANGLA =======================
@@ -333,7 +459,7 @@ class AppTranslations extends Translations {
       // ----- Common -----
       'back': 'পিছনে',
       'powered':
-      'Powered By SafeCare24/7 Medical Services Limited\nBeta Version 1.0',
+          'Powered By SafeCare24/7 Medical Services Limited\nBeta Version 1.0',
       'choose': 'নির্বাচন করুন',
       'done': 'সম্পন্ন',
       'select': 'নির্বাচন করুন',
@@ -341,7 +467,7 @@ class AppTranslations extends Translations {
       // ----- Welcome -----
       'welcome_title': 'AmbuFast-এ স্বাগতম',
       'welcome_subtitle':
-      'বাংলাদেশের বৃহত্তম অ্যাম্বুলেন্স নেটওয়ার্ক এবং রাইড শেয়ারিং প্ল্যাটফর্ম',
+          'বাংলাদেশের বৃহত্তম অ্যাম্বুলেন্স নেটওয়ার্ক এবং রাইড শেয়ারিং প্ল্যাটফর্ম',
       'login': 'লগইন',
       'create_account': 'অ্যাকাউন্ট তৈরি করুন',
 
@@ -369,17 +495,19 @@ class AppTranslations extends Translations {
 
       // ----- Recover Password -----
       'recover_title': 'পাসওয়ার্ড পুনরুদ্ধার করুন',
-      'recover_subtitle_phone': 'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ফোন নম্বরটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
-      'recover_subtitle_email': 'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ইমেইল ঠিকানাটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
+      'recover_subtitle_phone':
+          'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ফোন নম্বরটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
+      'recover_subtitle_email':
+          'পাসওয়ার্ড পুনরায় সেট করতে এগিয়ে যেতে নিবন্ধনের সময় আপনি যে ইমেইল ঠিকানাটি ব্যবহার করেছিলেন সেটি প্রবেশ করুন।',
       'send_otp': 'OTP পাঠান',
       'have_account_q': 'আপনার একটি অ্যাকাউন্ট আছে?',
 
       // ----- Verify OTP -----
       'verify_title': 'আপনার অ্যাকাউন্ট যাচাই করুন',
       'verify_subtitle_phone':
-      'আমরা আপনার ফোন নম্বরে একটি এককালীন পাসওয়ার্ড (OTP) পাঠিয়েছি। যাচাইকরণ সম্পূর্ণ করতে নিচের কোডটি প্রবেশ করুন।',
+          'আমরা আপনার ফোন নম্বরে একটি এককালীন পাসওয়ার্ড (OTP) পাঠিয়েছি। যাচাইকরণ সম্পূর্ণ করতে নিচের কোডটি প্রবেশ করুন।',
       'verify_subtitle_email':
-      'আমরা আপনার ইমেইল ঠিকানায় একটি এককালীন পাসওয়ার্ড (OTP) পাঠিয়েছি। যাচাইকরণ সম্পূর্ণ করতে নিচের কোডটি প্রবেশ করুন।',
+          'আমরা আপনার ইমেইল ঠিকানায় একটি এককালীন পাসওয়ার্ড (OTP) পাঠিয়েছি। যাচাইকরণ সম্পূর্ণ করতে নিচের কোডটি প্রবেশ করুন।',
       'resend_otp': 'পুনরায় OTP পাঠান',
       'change_phone': 'ফোন নম্বর পরিবর্তন করুন',
       'change_email': 'ইমেইল পরিবর্তন করুন',
@@ -396,6 +524,7 @@ class AppTranslations extends Translations {
       'female': 'মহিলা',
       'others': 'অন্যান্য',
       'blood_group': 'রক্তের গ্রুপ*',
+      'blood_group_p': 'রক্তের গ্রুপ',
       'password': 'পাসওয়ার্ড',
       'confirm_password': 'পাসওয়ার্ড নিশ্চিত করুন',
       'hint_confirm_password': 'পাসওয়ার্ড নিশ্চিত করে প্রবেশ করুন',
@@ -445,18 +574,18 @@ class AppTranslations extends Translations {
 
       'home_last_ride_title': 'সম্মানের সাথে শেষ যাত্রা',
       'home_last_ride_body':
-      'আপনার দান সেইসব মানুষের মর্যাদাপূর্ণ শেষ যাত্রা নিশ্চিত করে যারা ফিউনারেল ট্রান্সপোর্টে সক্ষম নন।',
+          'আপনার দান সেইসব মানুষের মর্যাদাপূর্ণ শেষ যাত্রা নিশ্চিত করে যারা ফিউনারেল ট্রান্সপোর্টে সক্ষম নন।',
       'home_support_now': 'এখনই সহায়তা করুন',
 
       'home_funeral_support_title': 'সম্মানের সাথে শেষ যাত্রা',
       'home_funeral_support_body':
-      'আপনার পরিবার যদি ফিউনারেল ট্রান্সপোর্ট ব্যয়ে সমস্যায় থাকে, সম্মানজনক বিদায় নিশ্চিত করতে আমাদের ডোনেশন-ভিত্তিক সার্ভিসে আবেদন করুন।',
+          'আপনার পরিবার যদি ফিউনারেল ট্রান্সপোর্ট ব্যয়ে সমস্যায় থাকে, সম্মানজনক বিদায় নিশ্চিত করতে আমাদের ডোনেশন-ভিত্তিক সার্ভিসে আবেদন করুন।',
       'home_request_support': 'সাপোর্ট রিকোয়েস্ট',
 
       //.........enable_location............
       'loc_enable_title': 'আপনার অবস্থান সক্ষম করুন',
       'loc_enable_subtitle':
-      'আপনার আশেপাশে অনুরোধটি খুঁজে পেতে আপনার অবস্থান নির্বাচন করুন',
+          'আপনার আশেপাশে অনুরোধটি খুঁজে পেতে আপনার অবস্থান নির্বাচন করুন',
       'loc_use_my_location': 'আমার অবস্থান ব্যবহার করুন',
       'loc_skip': 'আপাতত এড়িয়ে যান',
 
@@ -471,7 +600,7 @@ class AppTranslations extends Translations {
       'review': 'পর্যালোচনা',
       'validation_title': 'যাচাই',
       'validation_support_msg':
-      'অনুগ্রহ করে একটি কারণ নির্বাচন করুন, পরিমাণ দিন এবং শর্তাবলীতে সম্মতি দিন।',
+          'অনুগ্রহ করে একটি কারণ নির্বাচন করুন, পরিমাণ দিন এবং শর্তাবলীতে সম্মতি দিন।',
 
       // Cause labels
       'cause_general_fund': 'সাধারণ তহবিল',
@@ -513,17 +642,19 @@ class AppTranslations extends Translations {
       'cancel': 'বাতিল',
       'confirm': 'কনফার্ম',
 
-      'payment_success_title': 'পেমেন্ট সফল!\nআপনার গাড়ির বুকিং নিশ্চিত হয়েছে।',
-      'payment_success_body': 'আমরা আপনার বুকিং পেমেন্ট (৳@amount) পেয়েছি। আপনার গাড়ি সময়মতো আপনার পিকআপ লোকেশনের পথে রয়েছে।',
+      'payment_success_title':
+          'পেমেন্ট সফল!\nআপনার গাড়ির বুকিং নিশ্চিত হয়েছে।',
+      'payment_success_body':
+          'আমরা আপনার বুকিং পেমেন্ট (৳@amount) পেয়েছি। আপনার গাড়ি সময়মতো আপনার পিকআপ লোকেশনের পথে রয়েছে।',
       'go_to_my_activity': 'আমার কার্যকলাপে যান',
       'back_to_home': 'বাড়ি ফিরে যাও',
-
 
       // === BN ===
       'request_support_title': 'সহায়তার জন্য অনুরোধ',
       'request_support_step': 'ধাপ ১ এর মধ্যে ২',
       'start_a_request': 'একটি অনুরোধ শুরু করুন',
-      'start_a_request_hint': 'আপনি কী সহায়তা চান জানিয়ে দিন। দ্রুত অনুমোদনের জন্য বিল বা প্রেসক্রিপশন আপলোড করতে পারেন।',
+      'start_a_request_hint':
+          'আপনি কী সহায়তা চান জানিয়ে দিন। দ্রুত অনুমোদনের জন্য বিল বা প্রেসক্রিপশন আপলোড করতে পারেন।',
 
       'request_cause': 'অনুরোধের কারণ*',
       'amount_needed': 'প্রয়োজনীয় পরিমাণ*',
@@ -546,10 +677,11 @@ class AppTranslations extends Translations {
       'click_to_upload_back': 'কার্ডের পিছনের দিকটি আপলোড করতে ক্লিক করুন',
       'max_file_size_25': '(সর্বোচ্চ ফাইল সাইজ: ২৫ এমবি)',
 
-      'agree_verification': 'জমা দেওয়ার মাধ্যমে, আপনি আমাদের যাচাইকরণ প্রক্রিয়া এবং শর্তাবলীতে সম্মতি দিচ্ছেন।',
+      'agree_verification':
+          'জমা দেওয়ার মাধ্যমে, আপনি আমাদের যাচাইকরণ প্রক্রিয়া এবং শর্তাবলীতে সম্মতি দিচ্ছেন।',
       'continue': 'চালিয়ে যান',
 
-// validation
+      // validation
       'vs_select_cause': 'অনুগ্রহ করে একটি কারণ নির্বাচন করুন।',
       'vs_amount': 'অনুগ্রহ করে সঠিক পরিমাণ লিখুন।',
       'vs_urgency': 'অনুগ্রহ করে জরুরিতা নির্বাচন করুন।',
@@ -560,11 +692,11 @@ class AppTranslations extends Translations {
       'file_too_large': 'ফাইল অনুমোদিত সাইজের বেশি।',
       'file_type_invalid': 'শুধুমাত্র JPG/PNG অনুমোদিত।',
 
-
       // ===== BN =====
       'request_review_title': 'পর্যালোচনার অনুরোধ',
       'confirm_request': 'আপনার অনুরোধ নিশ্চিত করুন',
-      'confirm_request_hint': 'জমা দেওয়ার আগে বিশদ বিবরণ দু’বার পরীক্ষা করুন। আপনি যেকোনো সময় নীচের আইটেমগুলি সম্পাদনা করতে পারবেন।',
+      'confirm_request_hint':
+          'জমা দেওয়ার আগে বিশদ বিবরণ দু’বার পরীক্ষা করুন। আপনি যেকোনো সময় নীচের আইটেমগুলি সম্পাদনা করতে পারবেন।',
       'step_2_of_2': 'ধাপ ২ এর মধ্যে ২',
 
       'rr_cause': 'কারণ',
@@ -583,7 +715,8 @@ class AppTranslations extends Translations {
 
       // ===== BN =====
       'rs_success_title': 'তুমি সম্পূর্ণ প্রস্তুত।',
-      'rs_success_body': 'আপনার অনুরোধটি পর্যালোচনার জন্য জমা দেওয়া হয়েছে।\nএটি অনুমোদিত হওয়ার সাথে সাথে আমরা আপনাকে জানাবো।',
+      'rs_success_body':
+          'আপনার অনুরোধটি পর্যালোচনার জন্য জমা দেওয়া হয়েছে।\nএটি অনুমোদিত হওয়ার সাথে সাথে আমরা আপনাকে জানাবো।',
       'rs_estimated_label': 'আনুমানিক: ৬ ঘণ্টার কম',
       'rs_go_to_activity': 'আমার কার্যকলাপে যান',
       'rs_back_home': 'হোম পেজে যাও',
@@ -600,20 +733,17 @@ class AppTranslations extends Translations {
       'saved_address': 'সংরক্ষিত ঠিকানা',
       'popular_places': 'জনপ্রিয় স্থান',
 
-
       // ----- Request Ride (places) -----
       'place_airport_title': 'হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর',
-      'place_airport_sub':   'বিমানবন্দর – দক্ষিণখান সড়ক, ঢাকা',
+      'place_airport_sub': 'বিমানবন্দর – দক্ষিণখান সড়ক, ঢাকা',
 
-      'place_jfp_title':     'যমুনা ফিউচার পার্ক',
-      'place_jfp_sub':       'KA-244, কুরিল, প্রগতি সরণি, ঢাকা',
+      'place_jfp_title': 'যমুনা ফিউচার পার্ক',
+      'place_jfp_sub': 'KA-244, কুরিল, প্রগতি সরণি, ঢাকা',
 
-      'place_bcity_title':   'বসুন্ধরা সিটি শপিং কমপ্লেক্স',
-      'place_bcity_sub':     '৩ নং তেজতুরী বাজার পশ্চিম, পল্লব পথ, ঢাকা',
+      'place_bcity_title': 'বসুন্ধরা সিটি শপিং কমপ্লেক্স',
+      'place_bcity_sub': '৩ নং তেজতুরী বাজার পশ্চিম, পল্লব পথ, ঢাকা',
 
-
-
-// ----- Bottom sheets (When / Contact / Service) -----
+      // ----- Bottom sheets (When / Contact / Service) -----
       'when_sheet_title': 'কখন আপনার যাত্রার প্রয়োজন?',
       'when_now_title': 'এখন',
       'when_now_sub': 'যাত্রার অনুরোধ করুন, লাফিয়ে উঠুন এবং যান',
@@ -633,6 +763,130 @@ class AppTranslations extends Translations {
 
       'signup_subtitle': 'সেকেন্ডের মধ্যে সাইন আপ করুন বা জরুরি সেবা বুক করুন।',
 
+      'account': 'প্রোফাইল',
+      'good_morning': 'শুভ সকাল,',
+      'rating': '৫.০',
+
+      // Sections
+      'profile_summary': 'প্রোফাইলের সারাংশ',
+      'settings_prefs': 'সেটিংস এবং পছন্দসমূহ',
+      'security_privacy': 'নিরাপত্তা ও গোপনীয়তা',
+      'support_legal': 'সহায়তা এবং আইনি',
+
+      // Items
+      'profile': 'প্রোফাইল',
+      'reviews': 'রিভিউ',
+      'my_booking': 'আমার বুকিং',
+      'my_donation_request': 'আমার দানসমূহ এবং অনুরোধ',
+      'save_address': 'সরবরাহ ঠিকানা',
+      'language': 'ভাষা',
+      'notification': 'বিজ্ঞপ্তি',
+      'change_password': 'পাসওয়ার্ড পরিবর্তন করুন',
+      'tap_emergency_sos': 'জরুরি SOS-এ ট্যাপ করুন',
+      'help_center_faqs': 'সহায়তা কেন্দ্র / প্রায়শ জিজ্ঞাস্য',
+
+      'cancellation_policy': 'বাতিলকরণ নীতি',
+      'terms_conditions': 'শর্তাবলী',
+      'privacy_policy': 'গোপনীয়তা নীতি',
+      'logout': 'লগআউট',
+      'english_us': 'Bangla',
+
+      'profile_details': 'প্রোফাইলের বিস্তারিত',
+      'edit_profile_details': 'প্রোফাইলের তথ্য সম্পাদনা',
+      'basic_information': 'বেসিক তথ্য',
+      'contact_information': 'যোগাযোগের তথ্য',
+      'member_since': 'সদস্য হয়েছেন',
+
+      // Actions
+      'edit': 'এডিট',
+      'update': 'আপডেট',
+      'upload_profile_photo': 'প্রোফাইল ছবি আপলোড করুন',
+
+      // Fields
+      'date_of_birth': 'জন্ম তারিখ',
+      'gender': 'লিঙ্গ',
+      'phone': 'ফোন',
+      'email_address': 'ইমেইল ঠিকানা',
+      'street_address': 'রাস্তার ঠিকানা',
+      'apartment_suite_unit_optional': 'অ্যাপার্টমেন্ট, সুইট, ইউনিট (ঐচ্ছিক)',
+      'city': 'শহর',
+      'state': 'স্টেট',
+      'zip_code': 'জিপ কোড',
+      'country': 'দেশ',
+
+      // Common options
+      'other': 'অন্যান্য',
+
+      // Logout confirm
+      'are_you_sure': 'আপনি কি নিশ্চিত?',
+      'logout_confirm_message':
+          'আপনি কি লগ আউট করতে চান? আপনি গুরুত্বপূর্ণ ট্রিপ মিস করতে পারেন।',
+      'yes_logout': 'হ্যাঁ, লগ আউট',
+
+      // validation / feedback
+      'required_field': 'ঘরটি আবশ্যক',
+      'success': 'সফল',
+      'profile_updated_successfully': 'প্রোফাইল সফলভাবে আপডেট হয়েছে',
+
+      'select_blood_group': 'রক্তের গ্রুপ নির্বাচন করুন',
+      'select_gender': 'লিঙ্গ নির্বাচন করুন',
+      'select_state': 'রাজ্য নির্বাচন করুন', // or 'অবস্থান নির্বাচন করুন'
+      'select_country': 'দেশ নির্বাচন করুন',
+
+      'all_review': 'সবকটি রিভিউ',
+
+      'good_ride_title': 'ভালো যাত্রা, কিন্তু আরও দারুণ হতে পারে!',
+      'great_ride_title': 'দারুণ যাত্রা',
+      'bad_ride_title': 'খারাপ যাত্রা',
+      'review_body_sample':
+          'আমার মনে হয় এর বাইরের এবং ভেতরের দিকটি এর শ্রেণির অন্য অ্যাম্বুলেন্সের তুলনায় অনেক সুন্দর।',
+
+      'language_title': 'ভাষা',
+      'language_updated': 'ভাষা পরিবর্তন করা হয়েছে',
+
+      // Keep list labels as in your screenshot (mostly English names)
+      'english_uk': 'English (UK)',
+      'mandarin': 'Mandarin',
+      'spanish': 'Spanish',
+      'french': 'French',
+      'arabic': 'Arabic',
+      'bengali': 'Bangla',
+      'russian': 'Russian',
+      'japanese': 'Japanese',
+      'korean': 'Korean',
+      'indonesian': 'Indonesia',
+      'indian': 'Indian',
+      'germany': 'Germany',
+      'chainish': 'Chainish',
+
+      'emergency_sos_title': 'জরুরি SOS-এ ট্যাপ করুন',
+      'error': 'ত্রুটি',
+      'call_failed': 'ডায়লার খোলা যায়নি',
+
+      'my_donation_request_title': 'আমার সমর্থন এবং অনুরোধ',
+      'support_tab': 'সমর্থন',
+      'request_tab': 'অনুরোধ',
+      'search_by_date': 'তারিখ অনুযায়ী অনুসন্ধান করুন',
+      'total_support': 'টোটাল সমর্থন',
+      'receipt': 'রসিদ',
+      'pending': 'পেন্ডিং',
+      'approved': 'অনুমোদিত',
+      'rejected': 'বাতিল',
+      'ambulance_fare': 'অ্যাম্বুলেন্স ভাড়া',
+
+      // ===== bn_BD additions =====
+      'enter_full_name': 'পূর্ণ নাম লিখুন',
+      'yyyy-mm-dd': 'YYYY-MM-DD',
+      'dd-mm-yyyy': 'DD-MM-YYYY',
+      'enter_phone': 'ফোন নম্বর লিখুন',
+
+      'enter_street_address': 'রাস্তার ঠিকানা লিখুন',
+      'apt_suite_unit': 'অ্যাপার্টমেন্ট, সুইট, ইউনিট',
+      'enter_city': 'শহরের নাম লিখুন',
+      'enter_zip_code': 'জিপ কোড লিখুন',
+      // ===== bn_BD =====
+      'update_success_title': 'আপডেট সফলভাবে হয়েছে',
+      'update_success_body': 'আপনার প্রোফাইল সফলভাবে আপডেট করা হয়েছে',
     },
   };
 }

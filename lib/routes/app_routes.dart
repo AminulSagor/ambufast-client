@@ -1,11 +1,11 @@
 abstract class Routes {
   Routes._();
-  static const launch  = '/';
-  static const login    = '/login';
+  static const launch = '/';
+  static const login = '/login';
   static const register = '/register';
-  static const language  = '/language';
-  static const recover  = '/recover';
-  static const verify   = '/verify';
+  static const language = '/language';
+  static const recover = '/recover';
+  static const verify = '/verify';
   static const setPassword = '/set-password';
   static const createAccount = '/create-account';
   static const home = '/home';
@@ -25,4 +25,7 @@ abstract class Routes {
   static const emergencySos = '/emergency-sos';
   static const myDonationRequest = '/my-donation-request';
 
+  static const requestRideBook = '/request-ride-book';
+  static const requestRidePayment = '/request-ride-payment';
+  static const chooseDateTime = '/choose-date-time';
 }

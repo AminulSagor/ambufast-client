@@ -1,4 +1,9 @@
 // lib/routes/app_pages.dart
+import 'package:ambufast/ride/choose_date_time_controller.dart';
+import 'package:ambufast/ride/choose_date_time_view.dart';
+import 'package:ambufast/ride/request_ride_book_view.dart';
+import 'package:ambufast/ride/request_ride_payment_controller.dart';
+import 'package:ambufast/ride/request_ride_payment_view.dart';
 import 'package:get/get.dart';
 
 import '../account/account_controller.dart';
@@ -79,7 +84,6 @@ class AppPages {
         Get.lazyPut<LoginController>(() => LoginController());
       }),
     ),
-
 
     GetPage(
       name: Routes.recover,
@@ -163,7 +167,7 @@ class AppPages {
       page: () => const SupportRequestReviewView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<SupportRequestReviewController>(
-              () => SupportRequestReviewController(),
+          () => SupportRequestReviewController(),
         );
       }),
     ),
@@ -173,7 +177,7 @@ class AppPages {
       page: () => const RequestSubmissionSuccessView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<RequestSubmissionSuccessController>(
-              () => RequestSubmissionSuccessController(),
+          () => RequestSubmissionSuccessController(),
         );
       }),
     ),
@@ -193,7 +197,6 @@ class AppPages {
         Get.lazyPut<AccountController>(() => AccountController());
       }),
     ),
-
 
     GetPage(
       name: Routes.profileDetails,
@@ -260,5 +263,37 @@ class AppPages {
       }),
     ),
 
+    GetPage(
+      name: Routes.requestRideBook,
+      page: () => const RequestRideBookView(),
+      binding: BindingsBuilder(() {
+        // if (Get.isRegistered<RequestRideController>()) {
+        //   Get.delete<RequestRideController>(force: false);
+        // }
+        Get.put(RequestRideController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.requestRidePayment,
+      page: () => const RequestRidePaymentView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<RequestRidePaymentController>()) {
+          Get.delete<RequestRidePaymentController>(force: false);
+        }
+        Get.put(RequestRidePaymentController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.chooseDateTime,
+      page: () => const ChooseDateTimeView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<ChooseDateTimeController>()) {
+          Get.delete<ChooseDateTimeController>(force: false);
+        }
+        Get.put(ChooseDateTimeController());
+      }),
+    ),
   ];
 }

@@ -28,14 +28,9 @@ Future<void> main() async {
   final hasToken = sp.getString('auth_token') != null;
 
   // 4️⃣ decide initial route
-  final initialRoute = hasToken ? '/home' : AppPages.initial;
+  final initialRoute = hasToken ? '/home' : '/home';
 
-  runApp(
-    AmbuFastApp(
-      initialLocale: initialLocale,
-      initialRoute: initialRoute,
-    ),
-  );
+  runApp(AmbuFastApp(initialLocale: initialLocale, initialRoute: initialRoute));
 }
 
 class AmbuFastApp extends StatelessWidget {
@@ -61,9 +56,7 @@ class AmbuFastApp extends StatelessWidget {
           fallbackLocale: const Locale('en', 'US'),
           initialRoute: initialRoute, // 👈 dynamic route here
           getPages: AppPages.routes,
-          theme: ThemeData(
-            scaffoldBackgroundColor: const Color(0xFFFAFFFB),
-          ),
+          theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFFAFFFB)),
         );
       },
     );

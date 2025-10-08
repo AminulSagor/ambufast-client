@@ -324,6 +324,16 @@ class AppTranslations extends Translations {
       'service_freezing': 'Freezing Van',
       'service_row_sub': 'Request a ride, hop-in, and go',
 
+      // ----- Booking Info Modal -----
+      'book_info_title': 'Book Information',
+      'relationship_with_patient': 'Relationship With Patient',
+      'how_did_you_hear_about_us': 'How Did You Hear About Us?',
+      'patient_phone_address': 'Patient phone & address',
+      'enter_patient_phone_address': 'Enter patient phone & address',
+      'describe_patient_condition':
+          'Please describe about the patient condition',
+      'skip': 'Skip',
+
       'signup_subtitle': 'Sign up or book emergency service in seconds.',
       // Common
       'account': 'Account',
@@ -452,6 +462,104 @@ class AppTranslations extends Translations {
       // ===== en_US =====
       'update_success_title': 'Update successfully',
       'update_success_body': 'Your profile has been updated successfully',
+
+      // Request Ride Booking
+      'booking_details': 'Booking details',
+      'date_time': 'Date & Time:',
+      'contact': 'Contact:',
+      'vehicle': 'Vehicle:',
+      'trip_type': 'Trip type:',
+      'single_trip': 'Single trip',
+      'category': 'Category:',
+      'emergency': 'Emergency',
+      'from': 'From',
+      'to': 'To',
+      'jhiga_address': 'Jhigatola Road, Dhaka, Bangladesh',
+      'square_address': 'Square Hospital, Panthapath, Dhaka 1205, Bangladesh',
+      'distance_est_time': 'Distance & Est. Time:',
+      'minutes': 'Mins',
+      'lowest_fare': 'Lowest fare',
+      'total': 'Total',
+      'without_toll': 'without toll fee',
+      'cash': 'Cash',
+      'request_send': 'Request Send',
+      'distance_value': '35.56KM | 60 Mins',
+      'without_toll_fee': 'Without toll fee',
+      'bdt_fare': 'BDT 580.85',
+      'confirm_pickup_location': 'Confirm Pickup Location',
+      'finding_drivers_header': 'Finding drivers',
+      'cancel_request_button': 'Cancel Request',
+      'confirm_driver_header': 'Confirm driver',
+      'arrival_time': 'Arrival time:',
+      'min': 'min',
+      'distance': 'Distance:',
+      'arrival_cost': 'Arrival cost',
+      'info_ambulance_distance':
+          'This Ambulance is currently @distance km away. An Arrival Cost of @cost is included in your fare to cover that travel.',
+      'taka_symbol': '৳',
+      'confirmation_payment_required':
+          'Confirmation payment is required to secure your booking.',
+      'driver_on_standby':
+          'Driver is on standby for your booking confirmation.',
+      'cancellation_policy_terms': 'Cancellation Policy & Terms',
+      'coupon_promo_code': 'Coupon/Promo Code',
+      'enter_code': 'Enter code',
+      'apply': 'Apply',
+      'payable_now': 'Payable now',
+      'coupon_applied_message': 'You saved ৳ @amount on your trip',
+      'price_breakdown': 'Price breakdown',
+      'price_breakdown_description':
+          'Your fare will be the price presented before the trip or based on the rates below and other applicable surcharges and adjustments.',
+      'base_fare': 'Base fare',
+      'per_km_rate': '+ Per KM rate',
+      'waiting_charges': '+ Waiting Charges',
+      'booking_fee': 'Booking fee',
+      'vat_tax': 'VAT & TAX',
+      'close': 'Close',
+      'bdt_currency': 'BDT',
+
+      'select_payment_method': 'Select Payment Method',
+      'pay_with_bkash': 'Pay with bKash',
+      'pay_with_nagad': 'Get 10% discount',
+      'pay_with_city_bank': 'Get 10% discount',
+      'visa_master_card': 'Visa/Master Card',
+
+      //lowest fare
+      'freezing_van': 'Freezing van',
+      'non_ac_ambulance': 'Non Ac Ambulance',
+      'cng': 'CNG',
+      'motorcycle': 'Motorcycle',
+      'moto_saver': 'Moto Saver',
+
+      //cancel request
+      'confirm_cancel_title': 'Are you sure you want to cancel this trip?',
+      'cancel_reason': 'Cancel Reason',
+      'reason_ambulance_long': 'Ambulance taking too long',
+      'reason_alternate_transport': 'Found alternate transport',
+      'reason_wrong_location': 'Wrong location selected',
+      'reason_booked_mistake': 'Booked by mistake',
+      'reason_emergency_resolved': 'Emergency resolved',
+      'reason_other': 'Other',
+      'keep_searching': 'Keep Searching',
+      'yes_cancel': 'Yes, Cancel',
+
+      //chossing date time
+      'choose_a_time': 'Choose a time',
+      'choose_a_date': 'Choose a date',
+      'choose_date_time': 'Choose date and time',
+      'estimated_pickup': 'Estimated pickup date & time',
+      'time_disclaimer':
+          'Times are estimated based on predicted traffic. Actual traffic may impact your dropoff time. No cancel fee up to an hour before pickup or anytime before your driver is assigned. See Terms',
+
+      'confirm_trip': 'Confirm trip',
+
+      'round_info_title': 'Round Trip',
+      'round_info_message':
+          'Pickup Address → Drop-off Address → Pickup Address',
+
+      'set_your_destionation': 'Set your destination',
+      'drag_map_move': 'Drag map to move pin',
+      'confirm_destionation': 'Confirm dentination ',
     },
 
     // ======================= BANGLA =======================
@@ -761,6 +869,15 @@ class AppTranslations extends Translations {
       'service_freezing': 'ফ্রিজিং ভ্যান',
       'service_row_sub': 'যাত্রার অনুরোধ করুন, লাফিয়ে উঠুন এবং যান',
 
+      // ----- Booking Info Modal -----
+      'book_info_title': 'বুকিং তথ্য',
+      'relationship_with_patient': 'রোগীর সাথে সম্পর্ক',
+      'how_did_you_hear_about_us': 'আপনি আমাদের সম্পর্কে কিভাবে জানলেন?',
+      'patient_phone_address': 'রোগীর ফোন ও ঠিকানা',
+      'enter_patient_phone_address': 'রোগীর ফোন নম্বর এবং ঠিকানা লিখুন',
+      'describe_patient_condition': 'রোগীর অবস্থা সম্পর্কে বিস্তারিত বলুন',
+      'skip': 'এড়িয়ে যান',
+
       'signup_subtitle': 'সেকেন্ডের মধ্যে সাইন আপ করুন বা জরুরি সেবা বুক করুন।',
 
       'account': 'প্রোফাইল',
@@ -887,6 +1004,105 @@ class AppTranslations extends Translations {
       // ===== bn_BD =====
       'update_success_title': 'আপডেট সফলভাবে হয়েছে',
       'update_success_body': 'আপনার প্রোফাইল সফলভাবে আপডেট করা হয়েছে',
+
+      // Request Ride Booking
+      'booking_details': 'বুকিং এর বিস্তারিত তথ্য',
+      'date_time': 'তারিখ ও সময়:',
+      'contact': 'যোগাযোগ:',
+      'vehicle': 'যানবাহন:',
+      'trip_type': 'ভ্রমণের ধরণ:',
+      'single_trip': 'একক ট্রিপ',
+      'category': 'বিভাগ:',
+      'emergency': 'জরুরী অবস্থা',
+      'from': 'থেকে',
+      'to': 'স্থান',
+      'jhiga_address': 'জিগাতলা রোড, ঢাকা, বাংলাদেশ',
+      'square_address': 'স্কয়ার হাসপাতাল, পান্থপথ, ঢাকা ১২০৫, বাংলাদেশ',
+      'distance_est_time': 'দূরত্ব এবং আনুমানিক সময়:',
+      'minutes': 'মিনিট',
+      'lowest_fare': 'সর্বনিম্ন ভাড়া',
+      'total': 'মোট',
+      'without_toll': 'টোল ফি ছাড়াই',
+      'cash': 'নগদ',
+      'request_send': 'অনুরোধ পাঠান',
+      'distance_value': '৩৫.৫৬ কিমি | ৬০ মিনিট',
+      'without_toll_fee': 'টোল ফি ছাড়া',
+      'bdt_fare': '৫৮০.৮৫ টাকা',
+      'confirm_pickup_location': 'পিকআপ লোকেশন নিশ্চিত করুন',
+      'finding_drivers_header': 'ড্রাইভার খোঁজা',
+      'cancel_request_button': 'অনুরোধ বাতিল করুন',
+
+      'confirm_driver_header': 'ড্রাইভার নিশ্চিত করুন',
+      'arrival_time': 'আগমনের সময়:',
+      'min': 'মিনিট',
+      'distance': 'দূরত্ব:',
+      'arrival_cost': 'আগমনের খরচ',
+      'info_ambulance_distance':
+          'এই গাড়ীটি বর্তমানে @distance কিমি দূরে। আপনার ভ্রমণের ভাড়ার সাথে @cost টাকা আগমন খরচ অন্তর্ভুক্ত।',
+      'taka_symbol': 'টাকা',
+
+      'confirmation_payment_required':
+          'আপনার বুকিং নিশ্চিত করার জন্য নির্দিষ্টকরণ পেমেন্ট প্রয়োজন।',
+      'driver_on_standby':
+          'সফলভাবে পেমেন্ট নিশ্চিত করার পরেই বুকিং নিশ্চিত করা হবে।',
+      'cancellation_policy_terms': 'বাতিলকরণ নীতি এবং শর্তাবলী',
+      'coupon_promo_code': 'কুপন/প্রোমো কোড',
+      'enter_code': 'কোড লিখুন',
+      'apply': 'প্রয়োগ করুন',
+      'payable_now': 'এখনই পরিশোধযোগ্য',
+      'coupon_applied_message': 'আপনার ভ্রমণে ৳ @amount সাশ্রয় হয়েছে',
+
+      'price_breakdown': 'দামের বিশদ বিবরণ',
+      'price_breakdown_description':
+          'আপনার ভাড়া হবে ভ্রমণের আগে উপস্থাপিত মূল্য অথবা নীচের হার এবং অন্যান্য প্রযোজ্য সারচার্জ এবং সমন্বয়ের উপর ভিত্তি করে।',
+      'base_fare': 'মূল ভাড়া',
+      'per_km_rate': '+ প্রতি কিলোমিটার ভাড়া',
+      'waiting_charges': '+ অপেক্ষার চার্জ',
+      'booking_fee': 'বুকিং ফি',
+      'vat_tax': 'ভ্যাট এবং ট্যাক্স',
+      'close': 'বন্ধ করুন',
+      'taka_currency': 'টাকা',
+      'select_payment_method': 'পেমেন্ট পদ্ধতি নির্বাচন করুন',
+      'pay_with_bkash': 'বিকাশ দিয়ে পেমেন্ট করুন',
+      'pay_with_nagad': '১০% ছাড় পান',
+      'pay_with_city_bank': '১০% ছাড় পান',
+      'visa_master_card': 'ভিসা/মাস্টার কার্ড',
+
+      //lowest fare
+      'freezing_van': 'ফ্রিজিং ভ্যান',
+      'non_ac_ambulance': 'নন এসি অ্যাম্বুলেন্স',
+      'cng': 'সিএনজি',
+      'motorcycle': 'মোটরসাইকেল',
+      'moto_saver': 'মোটো সেভার',
+
+      //cancel request
+      'confirm_cancel_title':
+          'আপনি কি নিশ্চিত যে আপনি এই ট্রিপ বাতিল করতে চান?',
+      'cancel_reason': 'বাতিল করার কারণ',
+      'reason_ambulance_long': 'অ্যাম্বুলেন্সে অনেক বেশি সময় লাগছে',
+      'reason_alternate_transport': 'বিকল্প পরিবহন পাওয়া গেছে',
+      'reason_wrong_location': 'ভুল অবস্থান নির্বাচন করা হয়েছে',
+      'reason_booked_mistake': 'ভুল করে বুক করা হয়েছে',
+      'reason_emergency_resolved': 'জরুরী অবস্থার সমাধান হয়েছে',
+      'reason_other': 'অন্যান্য',
+      'keep_searching': 'খুঁজতে থাকুন',
+      'yes_cancel': 'হ্যাঁ, বাতিল করুন',
+
+      // choosing date time
+      'choose_a_time': 'একটি সময় বেছে নিন',
+      'choose_a_date': 'একটি তারিখ বেছে নিন',
+      'choose_date_time': 'তারিখ এবং সময় বেছে নিন',
+      'estimated_pickup': 'আনুমানিক পিকআপের তারিখ এবং সময়',
+      'time_disclaimer':
+          'পূর্বাভাসিত ট্র্যাফিকের উপর ভিত্তি করে সময় অনুমান করা হয়। প্রকৃত ট্র্যাফিক আপনার ড্রপঅফের সময়কে প্রভাবিত করতে পারে। পিকআপের এক ঘন্টা আগে বা আপনার ড্রাইভারকে নির্ধারিত করার আগে যেকোনো সময় কোনও বাতিল ফি নেই। শর্তাবলী দেখুন।',
+      'confirm_trip': 'ট্রিপ নিশ্চিত করুন',
+
+      'round_info_title': 'রাউন্ড ট্রিপ',
+      'round_info_message': 'পিকআপ ঠিকানা → ড্রপ-অফ ঠিকানা → পিকআপ ঠিকানা',
+
+      'set_your_destionation': 'আপনার গন্তব্য নির্ধারণ করুন',
+      'drag_map_move': 'পিন সরাতে ম্যাপ টেনে আনুন',
+      'confirm_destionation': 'নিশ্চিত গন্তব্য করুন ',
     },
   };
 }

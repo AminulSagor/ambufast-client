@@ -9,7 +9,6 @@ import '../model/service_tile_model.dart';
 import '../model/trip_model.dart';
 import '../routes/app_routes.dart';
 
-
 class HomeController extends GetxController {
   // --- State
   final location = 'Your location is not available'.obs;
@@ -27,7 +26,9 @@ class HomeController extends GetxController {
   }
 
   // --- Intent
-  void onGoLaterTap() {}
+  void onGoLaterTap() {
+    Get.toNamed(Routes.requestRide);
+  }
 
   void onSearchTap() {}
 
@@ -39,17 +40,19 @@ class HomeController extends GetxController {
 
   void onCampaignTap(Campaign c) {}
 
-  void onSupportNow() {Get.toNamed(Routes.donateMoney);
+  void onSupportNow() {
+    Get.toNamed(Routes.donateMoney);
   }
 
-  void onRequestSupport() {Get.toNamed(Routes.requestSupport);
+  void onRequestSupport() {
+    Get.toNamed(Routes.requestSupport);
   }
 
   /// Called when the location row in the AppBar is tapped.
   /// If location is unknown, show the enable-location dialog.
   void onLocationTap() {
-    final missing = location.value.isEmpty ||
-        location.value.contains('not available');
+    final missing =
+        location.value.isEmpty || location.value.contains('not available');
 
     if (missing) {
       Get.dialog(
@@ -97,8 +100,7 @@ class HomeController extends GetxController {
       String pretty =
           '${pos.latitude.toStringAsFixed(5)}, ${pos.longitude.toStringAsFixed(5)}';
       try {
-        final pms =
-        await placemarkFromCoordinates(pos.latitude, pos.longitude);
+        final pms = await placemarkFromCoordinates(pos.latitude, pos.longitude);
         if (pms.isNotEmpty) {
           final p = pms.first;
           final parts = [
@@ -119,25 +121,49 @@ class HomeController extends GetxController {
   // --- Mock / seed
   void _seedStaticData() {
     emergencyTiles.assignAll([
-      ServiceTile('Ac Ambulance',
-          'assets/icon/home_page_icon/ambulance_icon.png', 'home_emergency_ac_ambulance'),
-      ServiceTile('Non Ac Ambulance',
-          'assets/icon/home_page_icon/ambulance_icon.png', 'home_emergency_non_ac_ambulance'),
-      ServiceTile('ICU/CCU Ambulance',
-          'assets/icon/home_page_icon/ambulance_icon.png', 'home_emergency_icu_ambulance'),
-      ServiceTile('Freezing Van',
-          'assets/icon/home_page_icon/ambulance_icon.png', 'home_emergency_freezing_van'),
+      ServiceTile(
+        'Ac Ambulance',
+        'assets/icon/home_page_icon/ambulance_icon.png',
+        'home_emergency_ac_ambulance',
+      ),
+      ServiceTile(
+        'Non Ac Ambulance',
+        'assets/icon/home_page_icon/ambulance_icon.png',
+        'home_emergency_non_ac_ambulance',
+      ),
+      ServiceTile(
+        'ICU/CCU Ambulance',
+        'assets/icon/home_page_icon/ambulance_icon.png',
+        'home_emergency_icu_ambulance',
+      ),
+      ServiceTile(
+        'Freezing Van',
+        'assets/icon/home_page_icon/ambulance_icon.png',
+        'home_emergency_freezing_van',
+      ),
     ]);
 
     nonEmergencyTiles.assignAll([
-      ServiceTile('moto', 'assets/icon/home_page_icon/motorcycle_icon.png',
-          'home_non_emergency_motorcycle'),
-      ServiceTile('cng', 'assets/icon/home_page_icon/cng_icon.png',
-          'home_non_emergency_cng'),
-      ServiceTile('micro', 'assets/icon/home_page_icon/moto_saver_icon.png',
-          'home_non_emergency_micro'),
-      ServiceTile('Freezing Van',
-          'assets/icon/home_page_icon/ambulance_icon.png', 'home_emergency_freezing_van'),
+      ServiceTile(
+        'moto',
+        'assets/icon/home_page_icon/motorcycle_icon.png',
+        'home_non_emergency_motorcycle',
+      ),
+      ServiceTile(
+        'cng',
+        'assets/icon/home_page_icon/cng_icon.png',
+        'home_non_emergency_cng',
+      ),
+      ServiceTile(
+        'micro',
+        'assets/icon/home_page_icon/moto_saver_icon.png',
+        'home_non_emergency_micro',
+      ),
+      ServiceTile(
+        'Freezing Van',
+        'assets/icon/home_page_icon/ambulance_icon.png',
+        'home_emergency_freezing_van',
+      ),
     ]);
 
     upcomingTrips.assignAll([
@@ -178,9 +204,21 @@ class HomeController extends GetxController {
 
     campaigns.assignAll([
       Campaign('assets/pregnant_girl.png', 'home_offer_sub', '30% discount'),
-      Campaign('assets/heart_attack.png', 'home_campaign_heart_attack', '30% discount'),
-      Campaign('assets/heart_attack.png', 'home_campaign_dialysis', '30% discount'),
-      Campaign('assets/heart_attack.png', 'home_campaign_disabled', '30% discount'),
+      Campaign(
+        'assets/heart_attack.png',
+        'home_campaign_heart_attack',
+        '30% discount',
+      ),
+      Campaign(
+        'assets/heart_attack.png',
+        'home_campaign_dialysis',
+        '30% discount',
+      ),
+      Campaign(
+        'assets/heart_attack.png',
+        'home_campaign_disabled',
+        '30% discount',
+      ),
     ]);
   }
 }

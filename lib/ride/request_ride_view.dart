@@ -5,9 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'request_ride_controller.dart';
 
 const _border = Color(0xFFE6E6E9);
-const _label  = Color(0xFF7A7F89);
-const _text   = Color(0xFF1E2430);
+const _label = Color(0xFF7A7F89);
+const _text = Color(0xFF1E2430);
 const _chipBg = Color(0xFFF0EFF3);
+const _txtField = Color(0xFFD4D5D9);
+const _txtFieldTxt = Color(0xFF8C8F9A);
+const _neutral800 = Color(0xFF33394C);
 
 class RequestRideView extends GetView<RequestRideController> {
   const RequestRideView({super.key});
@@ -22,13 +25,21 @@ class RequestRideView extends GetView<RequestRideController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const _TopChips(),
               18.h.verticalSpace,
               const _AddressBlock(), // ⬅️ card + floating plus
               12.h.verticalSpace,
-              const _RoundTripCheckbox(),
-              12.h.verticalSpace,
+              Obx(() {
+                if (controller.isNow.value) {
+                  return Column(
+                    children: [
+                      if (controller.isNow.value) const _RoundTripCheckbox(),
+                      12.h.verticalSpace,
+                    ],
+                  );
+                }
+                return SizedBox();
+              }),
 
               ..._PopularPlacesList(), // ⬅️ now localized
               8.h.verticalSpace,
@@ -47,9 +58,35 @@ class RequestRideView extends GetView<RequestRideController> {
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
-                child: Image.asset('assets/slider_image.png', fit: BoxFit.cover),
+                child: Image.asset(
+                  'assets/slider_image.png',
+                  fit: BoxFit.cover,
+                ),
               ),
               24.h.verticalSpace,
+              SizedBox(
+                width: double.infinity,
+                height: 46.h,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFE53935), // red button
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                    ),
+                  ),
+                  onPressed: () {
+                    showBookingInfoModalSheet(context, controller);
+                  },
+                  child: Text(
+                    'Continue'.tr,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -64,42 +101,47 @@ class _TopChips extends GetView<RequestRideController> {
 
   @override
   Widget build(BuildContext context) {
-    Widget chip({required RxString label, required IconData icon}) => Obx(
-          () => InputChip(
+    Widget chip({
+      required RxString label,
+      required IconData icon,
+      Color? chipBg,
+      Color? labelColor,
+    }) => Obx(
+      () => InputChip(
         // put leading icon inside label to control spacing precisely
         label: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 14.sp, color: _text),
+            Icon(icon, size: 14.sp, color: labelColor ?? _text),
             SizedBox(width: 4.w), // tiny gap between icon and text
             Flexible(
               child: Text(
                 label.value.length <= 10
                     ? label.value
                     : '${label.value.substring(0, 10)}...', // 👈 truncate after 10 chars
-                style: TextStyle(fontSize: 12.sp),
+                style: TextStyle(fontSize: 12.sp, color: labelColor ?? _text),
                 maxLines: 1,
                 softWrap: false,
-                overflow: TextOverflow.ellipsis, // still safe if the chip is narrower
+                overflow:
+                    TextOverflow.ellipsis, // still safe if the chip is narrower
               ),
-
             ),
             SizedBox(width: 2.w), // tiny gap before chevron
-            Icon(Icons.expand_more, size: 14.sp, color: _text),
+            Icon(Icons.expand_more, size: 14.sp, color: labelColor ?? _text),
           ],
         ),
-            // inside _TopChips -> chip(...)
-            onPressed: () {
-              if (icon == Icons.schedule_outlined) {
-                _showWhenSheet(context, controller);
-              } else if (icon == Icons.person_outline) {
-                _showContactSheet(context, controller);
-              } else {
-                _showServiceSheet(context, controller);
-              }
-            },
+        // inside _TopChips -> chip(...)
+        onPressed: () {
+          if (icon == Icons.schedule_outlined) {
+            _showWhenSheet(context, controller);
+          } else if (icon == Icons.person_outline) {
+            _showContactSheet(context, controller);
+          } else {
+            _showServiceSheet(context, controller);
+          }
+        },
 
-            backgroundColor: _chipBg,
+        backgroundColor: chipBg ?? _chipBg,
 
         // ultra-tight chip spacing
         padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
@@ -110,17 +152,31 @@ class _TopChips extends GetView<RequestRideController> {
       ),
     );
 
-
-    final row = Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        chip(label: controller.whenLabel, icon: Icons.schedule_outlined),
-        SizedBox(width: 8.w), // control the gap explicitly
-        chip(label: controller.whoLabel,  icon: Icons.person_outline),
-        SizedBox(width: 8.w),
-        chip(label: controller.typeLabel, icon: Icons.swap_horiz_outlined),
-      ],
+    final row = Obx(
+      () => Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          chip(
+            label: controller.whenLabel,
+            icon: Icons.schedule_outlined,
+            chipBg: controller.isNow.value ? _chipBg : _neutral800,
+            labelColor: controller.isNow.value ? _text : Colors.white,
+          ),
+          SizedBox(width: 8.w), // control the gap explicitly
+          chip(
+            label: controller.whoLabel,
+            icon: Icons.person_outline,
+            chipBg: _chipBg,
+          ),
+          SizedBox(width: 8.w),
+          chip(
+            label: controller.typeLabel,
+            icon: Icons.swap_horiz_outlined,
+            chipBg: _chipBg,
+          ),
+        ],
+      ),
     );
 
     // if there’s a chance of overflow on small screens, keep it scrollable
@@ -160,17 +216,19 @@ Future<T?> _showSheet<T>({
     builder: (_) => SafeArea(
       top: false,
       child: Padding(
-        padding: EdgeInsets.only(
-          left: 16.w, right: 16.w, bottom: 16.h,
-        ),
+        padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 16.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             _sheetHandle(),
             SizedBox(height: 4.h),
-            Text(title,
+            Text(
+              title,
               style: TextStyle(
-                  fontSize: 18.sp, fontWeight: FontWeight.w700, color: _text),
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w700,
+                color: _text,
+              ),
             ),
             SizedBox(height: 12.h),
             Divider(height: 1.h, color: _border),
@@ -191,8 +249,13 @@ Future<T?> _showSheet<T>({
                   ),
                 ),
                 onPressed: () => Navigator.of(context).pop(),
-                child: Text('done'.tr,
-                  style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600,color: Colors.white),
+                child: Text(
+                  'done'.tr,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -216,27 +279,37 @@ Widget _radioRow({
       padding: EdgeInsets.symmetric(vertical: 12.h),
       child: Row(
         children: [
-          SizedBox(width: 28.w, child: Center(child: leading)),
+          SizedBox(
+            width: 28.w,
+            child: Center(child: leading),
+          ),
           10.w.horizontalSpace,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
+                Text(
+                  title,
                   style: TextStyle(
-                      fontSize: 15.sp, fontWeight: FontWeight.w700, color: _text),
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    color: _text,
+                  ),
                 ),
                 if (subtitle != null) ...[
                   2.h.verticalSpace,
-                  Text(subtitle,
-                      style: TextStyle(fontSize: 12.sp, color: _label)),
-                ]
+                  Text(
+                    subtitle,
+                    style: TextStyle(fontSize: 12.sp, color: _label),
+                  ),
+                ],
               ],
             ),
           ),
           // trailing radio (outlined when false, filled when true)
           Container(
-            width: 20.w, height: 20.w,
+            width: 20.w,
+            height: 20.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(color: _label, width: 1.6),
@@ -244,10 +317,13 @@ Widget _radioRow({
             alignment: Alignment.center,
             child: selected
                 ? Container(
-              width: 10.w, height: 10.w,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.black),
-            )
+                    width: 10.w,
+                    height: 10.w,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black,
+                    ),
+                  )
                 : const SizedBox.shrink(),
           ),
         ],
@@ -255,12 +331,13 @@ Widget _radioRow({
     ),
   );
 }
+
 // ---------- WHEN sheet ----------
 void _showWhenSheet(BuildContext context, RequestRideController c) {
-  final nowTitle   = 'when_now_title'.tr;
-  final nowSub     = 'when_now_sub'.tr;
+  final nowTitle = 'when_now_title'.tr;
+  final nowSub = 'when_now_sub'.tr;
   final laterTitle = 'when_later_title'.tr;
-  final laterSub   = 'when_later_sub'.tr;
+  final laterSub = 'when_later_sub'.tr;
 
   String current = c.whenLabel.value;
 
@@ -271,16 +348,26 @@ void _showWhenSheet(BuildContext context, RequestRideController c) {
       children: [
         _radioRow(
           leading: const Icon(Icons.schedule, color: _text),
-          title: nowTitle, subtitle: nowSub,
+          title: nowTitle,
+          subtitle: nowSub,
           selected: current == nowTitle,
-          onTap: () { c.whenLabel.value = nowTitle; Navigator.pop(context); },
+          onTap: () {
+            c.whenLabel.value = nowTitle;
+            c.checkIsNow();
+            Navigator.pop(context);
+          },
         ),
         Divider(height: 1.h, color: _border),
         _radioRow(
           leading: const Icon(Icons.calendar_month, color: _text),
-          title: laterTitle, subtitle: laterSub,
+          title: laterTitle,
+          subtitle: laterSub,
           selected: current == laterTitle,
-          onTap: () { c.whenLabel.value = laterTitle; Navigator.pop(context); },
+          onTap: () {
+            c.whenLabel.value = laterTitle;
+            c.checkIsNow();
+            Navigator.pop(context);
+          },
         ),
       ],
     ),
@@ -288,7 +375,7 @@ void _showWhenSheet(BuildContext context, RequestRideController c) {
 }
 
 void _showContactSheet(BuildContext context, RequestRideController c) {
-  final meTitle  = 'contact_me_title'.tr;
+  final meTitle = 'contact_me_title'.tr;
   final addTitle = 'contact_add_title'.tr;
 
   String current = c.whoLabel.value;
@@ -302,7 +389,10 @@ void _showContactSheet(BuildContext context, RequestRideController c) {
           leading: const Icon(Icons.person, color: _text),
           title: meTitle,
           selected: current == meTitle,
-          onTap: () { c.whoLabel.value = meTitle; Navigator.pop(context); },
+          onTap: () {
+            c.whoLabel.value = meTitle;
+            Navigator.pop(context);
+          },
         ),
         Divider(height: 1.h, color: _border),
         _radioRow(
@@ -323,8 +413,8 @@ void _showContactSheet(BuildContext context, RequestRideController c) {
 void _showServiceSheet(BuildContext context, RequestRideController c) {
   final items = <Map<String, String>>[
     {'t': 'service_non_ac'.tr, 's': 'service_row_sub'.tr},
-    {'t': 'service_ac'.tr,     's': 'service_row_sub'.tr},
-    {'t': 'service_icu'.tr,    's': 'service_row_sub'.tr},
+    {'t': 'service_ac'.tr, 's': 'service_row_sub'.tr},
+    {'t': 'service_icu'.tr, 's': 'service_row_sub'.tr},
     {'t': 'service_freezing'.tr, 's': 'service_row_sub'.tr},
   ];
 
@@ -339,12 +429,17 @@ void _showServiceSheet(BuildContext context, RequestRideController c) {
           _radioRow(
             leading: Image.asset(
               'assets/icon/home_page_icon/ambulance_icon.png', // adjust to your asset
-              width: 20.w, height: 20.w, fit: BoxFit.contain,
+              width: 20.w,
+              height: 20.w,
+              fit: BoxFit.contain,
             ),
             title: items[i]['t']!,
             subtitle: items[i]['s']!,
             selected: current == items[i]['t']!,
-            onTap: () { c.typeLabel.value = items[i]['t']!; Navigator.pop(context); },
+            onTap: () {
+              c.typeLabel.value = items[i]['t']!;
+              Navigator.pop(context);
+            },
           ),
           if (i != items.length - 1) Divider(height: 1.h, color: _border),
         ],
@@ -352,8 +447,6 @@ void _showServiceSheet(BuildContext context, RequestRideController c) {
     ),
   );
 }
-
-
 
 /// Stack: address card + round plus button on the right
 // ===================== Address Block (matches mock) =====================
@@ -474,8 +567,11 @@ class _AddressCard extends GetView<RequestRideController> {
                           InkResponse(
                             onTap: () {}, // TODO: settings
                             radius: 18.r,
-                            child: Icon(Icons.my_location_outlined,
-                                size: 16.sp, color: _label),
+                            child: Icon(
+                              Icons.my_location_outlined,
+                              size: 16.sp,
+                              color: _label,
+                            ),
                           ),
 
                           // IconButton(
@@ -504,7 +600,6 @@ class _AddressCard extends GetView<RequestRideController> {
                 6.w.horizontalSpace,
 
                 // Locate button (as in mock right side icon)
-
               ],
             ),
           ),
@@ -539,10 +634,7 @@ class _AddressField extends StatelessWidget {
 // ===================== Painter: left rail =====================
 
 class _AddressRailPainter extends CustomPainter {
-  _AddressRailPainter({
-    required this.railColor,
-    required this.nodeColor,
-  });
+  _AddressRailPainter({required this.railColor, required this.nodeColor});
 
   final Color railColor;
   final Color nodeColor;
@@ -577,8 +669,6 @@ class _AddressRailPainter extends CustomPainter {
       height: s,
     );
     canvas.drawRect(rect, paintFill);
-
-
   }
 
   @override
@@ -590,72 +680,88 @@ class _RoundTripCheckbox extends GetView<RequestRideController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Row(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        SizedBox(
-          width: 22.w, height: 22.w,
-          child: Checkbox(
-            value: controller.needRoundTrip.value,
-            onChanged: controller.toggleRoundTrip,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
-            checkColor: Colors.white,
-            fillColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.selected)
-                ? const Color(0xFF4DD14D)
-                : const Color(0xFFFFFFFF)),
+    return Obx(
+      () => Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          SizedBox(
+            width: 22.w,
+            height: 22.w,
+            child: Checkbox(
+              value: controller.needRoundTrip.value,
+              onChanged: controller.toggleRoundTrip,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+              checkColor: Colors.white,
+              fillColor: MaterialStateProperty.resolveWith(
+                (states) => states.contains(MaterialState.selected)
+                    ? const Color(0xFF4DD14D)
+                    : const Color(0xFFFFFFFF),
+              ),
+            ),
           ),
-        ),
 
-        8.w.horizontalSpace,
+          8.w.horizontalSpace,
 
-        // ↓ don't use Expanded here
-        Flexible(
-          fit: FlexFit.loose,
-          child: Text(
-            'need_round_trip'.tr,
-            style: TextStyle(fontSize: 13.sp, color: _text, fontWeight: FontWeight.bold),
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            softWrap: false,
+          // ↓ don't use Expanded here
+          Flexible(
+            fit: FlexFit.loose,
+            child: Text(
+              'need_round_trip'.tr,
+              style: TextStyle(
+                fontSize: 13.sp,
+                color: _text,
+                fontWeight: FontWeight.bold,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              softWrap: false,
+            ),
           ),
-        ),
 
-        6.w.horizontalSpace, // control the gap explicitly
+          6.w.horizontalSpace, // control the gap explicitly
 
-        Container(
-          width: 20.w,
-          height: 20.w,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
+          GestureDetector(
+            onTap: controller.onRoundTripInfoTap,
+            child: Container(
+              width: 20.w,
+              height: 20.w,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.info,
+                size: 18.sp, // fits inside 20x20
+                color: Color(0xFFFFA500),
+              ),
+            ),
           ),
-          alignment: Alignment.center,
-          child: Icon(
-            Icons.info,
-            size: 18.sp,              // fits inside 20x20
-            color: Color(0xFFFFA500),
-          ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }
-
 
 /// Use localized keys from controller.placesKeys
 List<Widget> _PopularPlacesList() {
   final c = Get.find<RequestRideController>();
   return c.placesKeys.map((keys) {
     final title = keys[0].tr;
-    final sub   = keys[1].tr;
+    final sub = keys[1].tr;
     return Column(
       children: [
         ListTile(
           contentPadding: EdgeInsets.zero,
-          title: Text(title, style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600)),
-          subtitle: Text(sub, style: TextStyle(fontSize: 12.sp, color: _label)),
+          title: Text(
+            title,
+            style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w600),
+          ),
+          subtitle: Text(
+            sub,
+            style: TextStyle(fontSize: 12.sp, color: _label),
+          ),
           onTap: () {
             if (c.pickupCtrl.text.isEmpty) {
               c.pickupCtrl.text = title;
@@ -671,7 +777,11 @@ List<Widget> _PopularPlacesList() {
 }
 
 class _ActionRow extends StatelessWidget {
-  const _ActionRow({required this.iconPath, required this.title, required this.onTap});
+  const _ActionRow({
+    required this.iconPath,
+    required this.title,
+    required this.onTap,
+  });
   final String iconPath;
   final String title;
   final VoidCallback onTap;
@@ -686,11 +796,276 @@ class _ActionRow extends StatelessWidget {
           children: [
             Image.asset(iconPath, width: 32.w, height: 32.w),
             12.w.horizontalSpace,
-            Expanded(child: Text(title, style: TextStyle(fontSize: 15.sp, color: _text))),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 15.sp, color: _text),
+              ),
+            ),
             // const Icon(Icons.chevron_right),
           ],
         ),
       ),
     );
   }
+}
+
+void showBookingInfoModalSheet(
+  BuildContext context,
+  RequestRideController controller,
+) {
+  Get.bottomSheet(
+    // The entire UI is now wrapped in a Container with proper styling
+    Container(
+      // Handles keyboard input pushing the view up
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16.r),
+          topRight: Radius.circular(16.r),
+        ),
+      ),
+      child: SingleChildScrollView(
+        // Padding for the content inside the scroll view
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // --- Title ---
+            // _sheetHandle(),
+            Center(
+              child: Text(
+                'book_info_title'.tr,
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF404557),
+                ),
+              ),
+            ),
+            SizedBox(height: 18.h),
+            Divider(thickness: 2.h, color: Color(0xFFE6E6E9), height: 0.h),
+
+            // --- 1. Relationship With Patient Dropdown ---
+            SizedBox(height: 24.h),
+            Text(
+              'relationship_with_patient'.tr,
+              style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(height: 12.h),
+            _buildDropdown(
+              currentValue: controller.selectedRelationship,
+              options: controller.relationshipOptions,
+              onChanged: controller.updateRelationship,
+            ),
+            SizedBox(height: 12.h),
+
+            // --- 2. How Did You Hear About Us? Dropdown ---
+            Text(
+              'how_did_you_hear_about_us'.tr,
+              style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(height: 12.h),
+            _buildDropdown(
+              currentValue: controller.selectedHearingSource,
+              options: controller.hearingSourceOptions,
+              onChanged: controller.updateHearingSource,
+            ),
+            SizedBox(height: 12.h),
+
+            // --- 3. Patient Phone & Address Textarea ---
+            _buildLabeledTextarea(
+              label: 'patient_phone_address'.tr,
+              hintText: 'enter_patient_phone_address'.tr,
+              letterCountFor: controller.patientPhoneAddress,
+              onChanged: controller.onPatientPhoneAddressChanged,
+              maxLines: 3,
+              maxLength: 100,
+            ),
+            SizedBox(height: 12.h),
+
+            // --- 4. Patient Condition Textarea ---
+            _buildLabeledTextarea(
+              label: 'describe_patient_condition'.tr,
+              hintText: 'describe_patient_condition'.tr,
+              letterCountFor: controller.patientConditionDescription,
+              onChanged: controller.onPatientConditionChanged,
+              maxLines: 3,
+              maxLength: 100,
+            ),
+            SizedBox(height: 24.h),
+
+            // --- Action Buttons (Inside the scrollable column) ---
+            SizedBox(
+              width: double.infinity,
+              height: 44.h,
+              child: ElevatedButton(
+                onPressed: controller.skipBooking,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFF7F8F8),
+                  foregroundColor: Color(0xFF1C2130),
+                  elevation: 0,
+                  side: BorderSide(color: const Color(0xFFD4D5D9), width: 1.w),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 12.h),
+                ),
+                child: Text(
+                  'skip'.tr,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 15.h),
+            SizedBox(
+              width: double.infinity,
+              height: 44.h,
+              child: ElevatedButton(
+                onPressed: controller.continueBooking,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF43023),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  padding: EdgeInsets.symmetric(vertical: 12.h),
+                ),
+                child: Text(
+                  'continue'.tr,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20.h),
+          ],
+        ),
+      ),
+    ),
+    isScrollControlled: true, // Use this for variable height
+    ignoreSafeArea: false,
+    backgroundColor: Colors.transparent,
+  );
+}
+
+Widget _buildDropdown({
+  required RxString currentValue,
+  required List<String> options,
+  required void Function(String?) onChanged,
+}) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 16.w),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(6.r),
+      border: Border.all(color: Color(0xFFD4D5D9), width: 1.w),
+    ),
+    child: DropdownButtonHideUnderline(
+      child: Obx(
+        () => DropdownButton<String>(
+          value: currentValue.value.isEmpty
+              ? options.first
+              : currentValue.value,
+          isExpanded: true,
+          icon: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+          style: TextStyle(
+            fontSize: 13.sp,
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+          ),
+          borderRadius: BorderRadius.circular(6.r),
+          dropdownColor: Colors.white,
+          alignment: Alignment.bottomCenter,
+          items: options.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(
+                value,
+                style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w400),
+              ),
+            );
+          }).toList(),
+          onChanged: onChanged,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _buildLabeledTextarea({
+  required String label,
+  required RxString letterCountFor,
+  required String hintText,
+  required void Function(String) onChanged,
+  int maxLines = 1,
+  int maxLength = 100,
+}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: _text,
+            ),
+          ),
+          Obx(
+            () => Text(
+              '${letterCountFor.value.length}/$maxLength',
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Colors.grey.shade600,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+      SizedBox(height: 8.h),
+      Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r)),
+        child: TextField(
+          onChanged: onChanged,
+          maxLines: maxLines,
+          maxLength: maxLength,
+          keyboardType: TextInputType.multiline,
+          decoration: InputDecoration(
+            fillColor: _txtField,
+            filled: true,
+            hintText: hintText,
+            hintStyle: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              color: _txtFieldTxt,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.r),
+              borderSide: BorderSide.none,
+            ),
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 10.w,
+              vertical: 16.h,
+            ),
+            counterText: '',
+          ),
+          style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
+        ),
+      ),
+    ],
+  );
 }

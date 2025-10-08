@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../network/token_http_client.dart';
+
 /// Keep this consistent with the rest of your app/env
 const _baseUrl = String.fromEnvironment(
   'API_BASE_URL',

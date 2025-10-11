@@ -1,4 +1,5 @@
 import 'package:ambufast/routes/app_pages.dart';
+import 'package:ambufast/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,7 @@ Future<void> main() async {
   final hasToken = sp.getString('auth_token') != null;
 
   // 4️⃣ decide initial route
-  final initialRoute = hasToken ? '/home' : '/home';
+  final initialRoute = hasToken ? Routes.home : Routes.home;
 
   runApp(AmbuFastApp(initialLocale: initialLocale, initialRoute: initialRoute));
 }

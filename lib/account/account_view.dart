@@ -7,7 +7,6 @@ import '../widgets/bottom_nav_widget.dart';
 import '../widgets/logout_confirm_sheet.dart';
 import 'account_controller.dart';
 
-
 class AccountView extends GetView<AccountController> {
   const AccountView({super.key});
 
@@ -33,7 +32,8 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/profile_icon.png',
                         label: 'profile'.tr,
-                        onTap: () => controller.onItemTap(Routes.profileDetails),
+                        onTap: () =>
+                            controller.onItemTap(Routes.profileDetails),
                       ),
                       divider,
                       _RowItem(
@@ -57,7 +57,8 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/donation_icon.png',
                         label: 'my_donation_request'.tr,
-                        onTap: () => controller.onItemTap(Routes.myDonationRequest),
+                        onTap: () =>
+                            controller.onItemTap(Routes.myDonationRequest),
                       ),
                       divider,
                       _RowItem(
@@ -69,9 +70,15 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/language_icon.png',
                         label: 'language'.tr,
-                        trailing: Text('english_us'.tr,
-                            style: TextStyle(fontSize: 12.sp, color: Colors.black54)),
-                        onTap: () => controller.onItemTap(Routes.selectLanguage),
+                        trailing: Text(
+                          'english_us'.tr,
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: Colors.black54,
+                          ),
+                        ),
+                        onTap: () =>
+                            controller.onItemTap(Routes.selectLanguage),
                       ),
                       divider,
                       _RowItem(
@@ -107,31 +114,32 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/help_icon.png',
                         label: 'help_center_faqs'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('help_center'),
                       ),
                       divider,
                       _RowItem(
                         icon: 'assets/account/contact_icon.png',
                         label: 'contact_support'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('contact_support'),
                       ),
                       divider,
                       _RowItem(
                         icon: 'assets/account/cancellation_policy_icon.png',
                         label: 'cancellation_policy'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () =>
+                            controller.onTapItem('cancellation_policy'),
                       ),
                       divider,
                       _RowItem(
                         icon: 'assets/account/notification_icon.png',
                         label: 'terms_conditions'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('terms_conditions'),
                       ),
                       divider,
                       _RowItem(
                         icon: 'assets/account/review_icon.png',
                         label: 'privacy_policy'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('refund_policy'),
                       ),
                     ],
                   ),
@@ -175,17 +183,21 @@ class _Header extends GetView<AccountController> {
     final padTop = MediaQuery.of(context).padding.top;
 
     return Obx(() {
-      final name   = controller.userName.value.trim();
-      final first  = name.isEmpty ? '' : name.split(' ').first;
-      final phone  = controller.phone.value.trim();
+      final name = controller.userName.value.trim();
+      final first = name.isEmpty ? '' : name.split(' ').first;
+      final phone = controller.phone.value.trim();
       final avatar = controller.avatarUrl.value.trim();
       final rating = controller.rating.value;
-      final unread = controller.unreadCount.value; // <-- see controller note below
+      final unread =
+          controller.unreadCount.value; // <-- see controller note below
 
       return Container(
         width: double.infinity,
         padding: EdgeInsets.only(
-          top: padTop + 12.h, left: 16.w, right: 16.w, bottom: 16.h,
+          top: padTop + 12.h,
+          left: 16.w,
+          right: 16.w,
+          bottom: 16.h,
         ),
         decoration: const BoxDecoration(color: Color(0xFFFF3B30)),
         child: Column(
@@ -196,7 +208,7 @@ class _Header extends GetView<AccountController> {
               children: [
                 // Use your logo image (already in assets/)
                 Image.asset(
-                  'assets/logo.png',      // or 'assets/logo_with_color.png'
+                  'assets/logo.png', // or 'assets/logo_with_color.png'
                   height: 32.h,
                   fit: BoxFit.contain,
                 ),
@@ -206,15 +218,20 @@ class _Header extends GetView<AccountController> {
                   children: [
                     IconButton(
                       visualDensity: VisualDensity.compact,
-                      icon: const Icon(Icons.notifications_none_rounded, color: Colors.white),
-                      onPressed: controller.onTapNotifications,
+                      icon: const Icon(
+                        Icons.notifications_none_rounded,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {}, //controller.onTapNotifications,
                       tooltip: 'Notifications',
                     ),
                     if (unread > 0)
                       Positioned(
-                        right: 8, top: 8,
+                        right: 8,
+                        top: 8,
                         child: Container(
-                          width: 10.r, height: 10.r,
+                          width: 10.r,
+                          height: 10.r,
                           decoration: BoxDecoration(
                             color: const Color(0xFFFF3B30),
                             shape: BoxShape.circle,
@@ -226,12 +243,16 @@ class _Header extends GetView<AccountController> {
                 ),
               ],
             ),
-           // SizedBox(height: 12.h),
+            // SizedBox(height: 12.h),
 
             // Greeting line
             Text(
               '${_greeting()}, ${first.isEmpty ? 'User' : first}!',
-              style: TextStyle(color: Colors.white.withOpacity(.9), fontSize: 12.sp, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: Colors.white.withOpacity(.9),
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w500,
+              ),
             ),
             SizedBox(height: 14.h),
 
@@ -243,13 +264,27 @@ class _Header extends GetView<AccountController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(name.isEmpty ? '—' : name,
-                          maxLines: 1, overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.w700)),
+                      Text(
+                        name.isEmpty ? '—' : name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                       SizedBox(height: 4.h),
-                      Text(phone.isEmpty ? '' : phone,
-                          maxLines: 1, overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: Colors.white.withOpacity(.95), fontSize: 12.sp, fontWeight: FontWeight.w500)),
+                      Text(
+                        phone.isEmpty ? '' : phone,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(.95),
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -260,23 +295,51 @@ class _Header extends GetView<AccountController> {
                     CircleAvatar(
                       radius: 25.r,
                       backgroundColor: Colors.white24,
-                      backgroundImage: avatar.isEmpty ? null : NetworkImage(avatar),
-                      child: avatar.isEmpty ? Icon(Icons.person, color: Colors.white, size: 22.r) : null,
+                      backgroundImage: avatar.isEmpty
+                          ? null
+                          : NetworkImage(avatar),
+                      child: avatar.isEmpty
+                          ? Icon(Icons.person, color: Colors.white, size: 22.r)
+                          : null,
                     ),
                     Positioned(
-                      right: 5.w, bottom: -4.h,
+                      right: 5.w,
+                      bottom: -4.h,
                       child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
-                        decoration: BoxDecoration(
-                          color: Colors.white, borderRadius: BorderRadius.circular(12.r),
-                          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.08), blurRadius: 6, offset: const Offset(0, 2))],
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 6.w,
+                          vertical: 2.h,
                         ),
-                        child: Row(mainAxisSize: MainAxisSize.min, children: [
-                          Text(rating.toStringAsFixed(2),
-                              style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w700, color: const Color(0xFF111111))),
-                          SizedBox(width: 3.w),
-                          Icon(Icons.star, size: 8.r, color: const Color(0xFFFFB300)),
-                        ]),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(.08),
+                              blurRadius: 6,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              rating.toStringAsFixed(2),
+                              style: TextStyle(
+                                fontSize: 8.sp,
+                                fontWeight: FontWeight.w700,
+                                color: const Color(0xFF111111),
+                              ),
+                            ),
+                            SizedBox(width: 3.w),
+                            Icon(
+                              Icons.star,
+                              size: 8.r,
+                              color: const Color(0xFFFFB300),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -290,8 +353,6 @@ class _Header extends GetView<AccountController> {
   }
 }
 
-
-
 class _SectionTitle extends StatelessWidget {
   final String text;
   const _SectionTitle(this.text);
@@ -299,7 +360,14 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 6.w, bottom: 6.h),
-      child: Text(text, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w600, color: Colors.black87)),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 13.sp,
+          fontWeight: FontWeight.w600,
+          color: Colors.black87,
+        ),
+      ),
     );
   }
 }
@@ -310,9 +378,17 @@ class _Card extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10.r), boxShadow: [
-        BoxShadow(color: Colors.black.withOpacity(.04), blurRadius: 10.r, offset: Offset(0, 4.h)),
-      ]),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.r),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.04),
+            blurRadius: 10.r,
+            offset: Offset(0, 4.h),
+          ),
+        ],
+      ),
       child: Column(children: children),
     );
   }
@@ -343,7 +419,10 @@ class _RowItem extends StatelessWidget {
             Image.asset(icon, width: 26.w, height: 26.w, fit: BoxFit.contain),
             SizedBox(width: 12.w),
             Expanded(
-              child: Text(label, style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500)),
+              child: Text(
+                label,
+                style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.w500),
+              ),
             ),
             if (trailing != null) trailing!,
             Icon(Icons.chevron_right, size: 18.w, color: Colors.black45),
@@ -390,5 +469,3 @@ class _LogoutButton extends StatelessWidget {
     );
   }
 }
-
-

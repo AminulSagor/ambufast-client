@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../utils/bottom_sheet_helper.dart';
-import '../../widgets/custom_button.dart';
+import '../utils/bottom_sheet_helper.dart';
+import 'custom_button.dart';
 
 class DriverLoadingShimmer extends StatelessWidget {
   final String headTitle;

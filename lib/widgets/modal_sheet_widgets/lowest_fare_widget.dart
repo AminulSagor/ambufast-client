@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../request_ride_controller.dart';
+import '../../ride/request_ride_controller.dart';
 import '../../utils/bottom_sheet_helper.dart';
 
 class LowestFareWidget extends GetView<RequestRideController> {

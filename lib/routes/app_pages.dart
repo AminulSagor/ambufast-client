@@ -14,6 +14,8 @@ import '../all_review/all_review_controller.dart';
 import '../all_review/all_review_view.dart';
 import '../bkash_payment/bkash_payment_controller.dart';
 import '../bkash_payment/bkash_payment_view.dart';
+import '../contact_support/contact_support_controller.dart';
+import '../contact_support/contact_support_view.dart';
 import '../donate/donate_money_controller.dart';
 import '../donate/donate_money_view.dart';
 import '../donate_payment_setection/support_payment_controller.dart';
@@ -22,13 +24,22 @@ import '../edit_profile_details/edit_profile_details_controller.dart';
 import '../edit_profile_details/edit_profile_details_view.dart';
 import '../emergency_sos/emergency_sos_controller.dart';
 import '../emergency_sos/emergency_sos_view.dart';
+import '../help_center/help_center_controller.dart';
+import '../help_center/help_center_view.dart';
 import '../home/home_controller.dart';
 import '../home/home_view.dart';
 import '../language/language_controller.dart';
 import '../launch/launch_screen_controller.dart';
 import '../launch/launch_screen_view.dart';
+import '../legal/legal_policy_controller.dart';
+import '../legal/legal_policy_view.dart';
+import '../legal/payment_cancellation_view.dart';
 import '../login/login_controller.dart';
 import '../login/login_view.dart';
+import '../low_cost_intercity/intercity_detail_view.dart';
+import '../low_cost_intercity/low_cost_intercity_controller.dart';
+import '../low_cost_intercity/intercity_detail_controller.dart';
+import '../low_cost_intercity/low_cost_intercity_view.dart';
 import '../my_donation_request/my_donation_request_controller.dart';
 import '../my_donation_request/my_donation_request_view.dart';
 import '../payment_success/payment_success_controller.dart';
@@ -294,6 +305,57 @@ class AppPages {
         }
         Get.put(ChooseDateTimeController());
       }),
+    ),
+
+    GetPage(
+      name: Routes.lowCostIntercity,
+      page: () => const LowCostIntercityView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<LowCostIntercityController>()) {
+          Get.delete<LowCostIntercityController>(force: false);
+        }
+        Get.put(LowCostIntercityController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.intercityDetails,
+      page: () => const IntercityDetailView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<IntercityDetailController>()) {
+          Get.delete<IntercityDetailController>(force: false);
+        }
+        Get.put(IntercityDetailController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.helpCenter,
+      page: () => const HelpCenterView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<HelpCenterController>(() => HelpCenterController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.contactSupport,
+      page: () => const ContactSupportView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ContactSupportController>(() => ContactSupportController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.legalPolicy,
+      page: () => const LegalPolicyView(),
+      binding: BindingsBuilder(() {
+        // New instance on every Get.find<LegalPolicyController>()
+        Get.create<LegalPolicyController>(() => LegalPolicyController());
+      }),
+    ),
+    GetPage(
+      name: Routes.cancellationPaymentInfo,
+      page: () => const PaymentCancellationInfoView(),
     ),
   ];
 }

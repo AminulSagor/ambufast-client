@@ -10,12 +10,20 @@ class ChooseDateTimeController extends GetxController {
   final currentLocale = Get.locale?.toString() ?? 'en_US';
   // A reactive variable to hold the selected date and time.
   // We initialize it with a future date for demonstration.
-  var selectedDateTime = DateTime.now().add(const Duration(days: 90)).obs;
+  var selectedDateTime = DateTime.now().add(const Duration(days: 1)).obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (Get.arguments != null) {
+      selectedDateTime.value = Get.arguments as DateTime;
+    }
+  }
 
   // --- Getters for formatted date and time strings ---
   String getFormattedFullDateTime(String locale) {
     // The locale needs to be explicitly passed for correct formatting in Bengali
-    final format = DateFormat('E, MMM dd, yy | hh:mm a', locale);
+    final format = DateFormat('E, dd MMM y | hh:mm a', locale);
     return format.format(selectedDateTime.value);
   }
 

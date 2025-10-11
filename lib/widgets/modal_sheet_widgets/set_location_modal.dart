@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../utils/bottom_sheet_helper.dart';
-import '../../widgets/custom_button.dart';
+import '../custom_button.dart';
 
 class SetLocationModal extends GetView<RequestRideController> {
   final String headerText;

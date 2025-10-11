@@ -1,14 +1,18 @@
 // lib/ride/request_ride_controller.dart
+import 'package:ambufast/low_cost_intercity/low_cost_intercity_controller.dart';
 import 'package:ambufast/model/driver_model.dart';
-import 'package:ambufast/ride/bottom_sheets/lowest_fare_widget.dart';
+import 'package:ambufast/widgets/modal_sheet_widgets/lowest_fare_widget.dart';
 import 'package:ambufast/routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import 'bottom_sheets/cancel_confirmation_modal.dart';
-import 'bottom_sheets/short_info_modal.dart';
+import '../widgets/modal_sheet_widgets/cancel_confirmation_modal.dart';
+import '../widgets/modal_sheet_widgets/short_info_modal.dart';
 
 class RequestRideController extends GetxController {
+  final isIntercity = false.obs;
+  IntercityOffer? intercityOffer;
+
   final pickupCtrl = TextEditingController();
   final dropoffCtrl = TextEditingController();
 
@@ -87,6 +91,8 @@ class RequestRideController extends GetxController {
     Get.back();
     if (isNow.value) {
       Get.toNamed(Routes.requestRideBook);
+    } else if (isIntercity.value) {
+      Get.toNamed(Routes.chooseDateTime, arguments: intercityOffer!.departure);
     } else {
       Get.toNamed(Routes.chooseDateTime);
     }
@@ -240,6 +246,16 @@ class RequestRideController extends GetxController {
     checkIsNow();
     // Initialize all reasons to false (unchecked)
     selectedReasons = {for (var key in reasonKeys) key: false}.obs;
+
+    //cheking if intercity menu
+    if (Get.arguments == null) return;
+    isIntercity.value = Get.arguments['isIntercity'] as bool;
+    if (isIntercity.value) {
+      intercityOffer = Get.arguments['intercityOffer'] as IntercityOffer;
+      isNow.value = false;
+    } else {
+      intercityOffer = null;
+    }
   }
 
   // Toggles the checked state for a given reason key
@@ -299,8 +315,16 @@ class RequestRideController extends GetxController {
   }
 
   void onConfirmLocation() {
-    final index = isNow.value ? 2 : 0;
+    final index = isNow.value || isIntercity.value ? 2 : 0;
     fixedModalIndex.value = index;
+  }
+
+  void onDriverConfirm() {
+    if (isIntercity.value) {
+      Get.toNamed(Routes.requestRidePayment);
+    } else {
+      fixedModalIndex.value = 3;
+    }
   }
 
   void onSetDestination() {

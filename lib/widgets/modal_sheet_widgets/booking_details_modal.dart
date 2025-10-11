@@ -1,10 +1,11 @@
 import 'package:ambufast/widgets/custom_button.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../choose_date_time_controller.dart';
-import '../request_ride_controller.dart';
+import '../../ride/choose_date_time_controller.dart';
+import '../../ride/request_ride_controller.dart';
 import '../../utils/bottom_sheet_helper.dart';
 
 class BookingDetailsModal extends GetView<RequestRideController> {
@@ -20,6 +21,17 @@ class BookingDetailsModal extends GetView<RequestRideController> {
         Get.locale?.toString() ?? Locale('en', 'US').toString(),
       );
     }
+
+    //remove trailing icon if it's intercity
+    final isIntercity = controller.isIntercity.value;
+    final trailingIcon = isIntercity ? SizedBox() : null;
+
+    final category = isNow
+        ? 'emergency'
+        : isIntercity
+        ? 'Rural'
+        : 'Scheduled';
+
     return Column(
       children: [
         // Header
@@ -27,17 +39,34 @@ class BookingDetailsModal extends GetView<RequestRideController> {
 
         // Details Rows (all labels/values are now localized keys)
         divider(),
-        _buildDetailRow('date_time', dateTimeValue, controller: controller),
+        _buildDetailRow(
+          'date_time',
+          dateTimeValue,
+          controller: controller,
+          trailingIcon: trailingIcon,
+        ),
         divider(),
         _buildDetailRow('contact', 'for_me', controller: controller),
         divider(),
-        _buildDetailRow('vehicle', 'ac_ambulance', controller: controller),
+        _buildDetailRow(
+          'vehicle',
+          'ac_ambulance',
+          controller: controller,
+          trailingIcon: trailingIcon,
+        ),
         divider(),
-        _buildDetailRow('trip_type', 'single_trip', controller: controller),
-        divider(),
+        if (!isIntercity) ...[
+          _buildDetailRow(
+            'trip_type',
+            'single_trip',
+            controller: controller,
+            trailingIcon: trailingIcon,
+          ),
+          divider(),
+        ],
         _buildDetailRow(
           'category',
-          controller.isNow.value ? 'emergency' : 'Scheduled',
+          category,
           isCat: true,
           controller: controller,
         ),
@@ -137,7 +166,7 @@ class BookingDetailsModal extends GetView<RequestRideController> {
         // Next Button
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
-          child: controller.isNow.value
+          child: isNow || isIntercity
               ? CustomButton(
                   btnTxt: 'request_send',
                   onTap: controller.onSendRequest,

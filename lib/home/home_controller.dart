@@ -40,6 +40,10 @@ class HomeController extends GetxController {
 
   void onCampaignTap(Campaign c) {}
 
+  void onIntercityViewAll() {
+    Get.toNamed('low-cost-intercity');
+  }
+
   void onSupportNow() {
     Get.toNamed(Routes.donateMoney);
   }

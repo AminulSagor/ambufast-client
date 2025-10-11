@@ -24,8 +24,15 @@ abstract class Routes {
   static const selectLanguage = '/select-language';
   static const emergencySos = '/emergency-sos';
   static const myDonationRequest = '/my-donation-request';
+  static const helpCenter = '/help-center';
+  static const contactSupport = '/contact-support';
+  static const legalPolicy = '/legal-policy';
+  static const cancellationPaymentInfo = '/cancellation-payment-info';
 
   static const requestRideBook = '/request-ride-book';
   static const requestRidePayment = '/request-ride-payment';
   static const chooseDateTime = '/choose-date-time';
+
+  static const lowCostIntercity = '/low-cost-intercity';
+  static const intercityDetails = '/intercity-details';
 }

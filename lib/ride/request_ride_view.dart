@@ -11,6 +11,7 @@ const _chipBg = Color(0xFFF0EFF3);
 const _txtField = Color(0xFFD4D5D9);
 const _txtFieldTxt = Color(0xFF8C8F9A);
 const _neutral800 = Color(0xFF33394C);
+const _infoBase = Color(0xFF295BFF);
 
 class RequestRideView extends GetView<RequestRideController> {
   const RequestRideView({super.key});
@@ -36,6 +37,19 @@ class RequestRideView extends GetView<RequestRideController> {
                       if (controller.isNow.value) const _RoundTripCheckbox(),
                       12.h.verticalSpace,
                     ],
+                  );
+                }
+                if (controller.isIntercity.value) {
+                  return Text(
+                    'only_from_to_applicable'.trParams({
+                      'from': controller.intercityOffer!.from,
+                      'to': controller.intercityOffer!.to,
+                    }),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w500,
+                      color: _infoBase,
+                    ),
                   );
                 }
                 return SizedBox();
@@ -157,24 +171,28 @@ class _TopChips extends GetView<RequestRideController> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          chip(
-            label: controller.whenLabel,
-            icon: Icons.schedule_outlined,
-            chipBg: controller.isNow.value ? _chipBg : _neutral800,
-            labelColor: controller.isNow.value ? _text : Colors.white,
-          ),
-          SizedBox(width: 8.w), // control the gap explicitly
+          if (!controller.isIntercity.value) ...[
+            chip(
+              label: controller.whenLabel,
+              icon: Icons.schedule_outlined,
+              chipBg: controller.isNow.value ? _chipBg : _neutral800,
+              labelColor: controller.isNow.value ? _text : Colors.white,
+            ),
+            SizedBox(width: 8.w),
+          ], // control the gap explicitly
           chip(
             label: controller.whoLabel,
             icon: Icons.person_outline,
             chipBg: _chipBg,
           ),
-          SizedBox(width: 8.w),
-          chip(
-            label: controller.typeLabel,
-            icon: Icons.swap_horiz_outlined,
-            chipBg: _chipBg,
-          ),
+          if (!controller.isIntercity.value) ...[
+            SizedBox(width: 8.w),
+            chip(
+              label: controller.typeLabel,
+              icon: Icons.swap_horiz_outlined,
+              chipBg: _chipBg,
+            ),
+          ],
         ],
       ),
     );

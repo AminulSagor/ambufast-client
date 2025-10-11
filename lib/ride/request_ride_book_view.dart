@@ -1,14 +1,14 @@
-import 'package:ambufast/ride/bottom_sheets/booking_details_modal.dart';
+import 'package:ambufast/widgets/modal_sheet_widgets/booking_details_modal.dart';
 import 'package:ambufast/widgets/custom_button.dart';
-import 'package:ambufast/ride/bottom_sheets/driver_loading_shimmer.dart';
-import 'package:ambufast/ride/bottom_sheets/short_info_modal.dart';
+import 'package:ambufast/widgets/driver_loading_shimmer.dart';
+import 'package:ambufast/widgets/modal_sheet_widgets/short_info_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../utils/bottom_sheet_helper.dart';
 import '../widgets/driver_details.dart';
-import 'bottom_sheets/set_location_modal.dart';
+import '../widgets/modal_sheet_widgets/set_location_modal.dart';
 import 'request_ride_controller.dart';
 
 class RequestRideBookView extends GetView<RequestRideController> {
@@ -244,9 +244,13 @@ Widget _fixedBottomSheet({required RequestRideController controller}) {
           }
           if (index == 2) {
             Future.delayed(const Duration(seconds: 3), () {
-              controller.fixedModalIndex.value = 3;
+              controller.onDriverConfirm();
             });
-            return DriverLoadingShimmer(headTitle: 'finding_drivers_header');
+            return DriverLoadingShimmer(
+              headTitle: controller.isIntercity.value
+                  ? 'wait_driver_confirm'
+                  : 'finding_drivers_header',
+            );
           }
           if (index == 3) {
             return _confirmDriverModal(controller: controller);

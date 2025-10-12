@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../new_contact/new_contact_view.dart';
 import 'request_ride_controller.dart';
 
 const _border = Color(0xFFE6E6E9);
@@ -12,6 +13,8 @@ const _txtField = Color(0xFFD4D5D9);
 const _txtFieldTxt = Color(0xFF8C8F9A);
 const _neutral800 = Color(0xFF33394C);
 const _infoBase = Color(0xFF295BFF);
+const _bgColor = Color(0xFFFAFFFB);
+const _white = Colors.white;
 
 class RequestRideView extends GetView<RequestRideController> {
   const RequestRideView({super.key});
@@ -19,90 +22,103 @@ class RequestRideView extends GetView<RequestRideController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('request_ride_title'.tr), centerTitle: true),
+      backgroundColor: _bgColor,
+      appBar: AppBar(
+        title: Text('request_ride_title'.tr),
+        centerTitle: true,
+        backgroundColor: _white,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const _TopChips(),
-              18.h.verticalSpace,
-              const _AddressBlock(), // ⬅️ card + floating plus
-              12.h.verticalSpace,
-              Obx(() {
-                if (controller.isNow.value) {
-                  return Column(
-                    children: [
-                      if (controller.isNow.value) const _RoundTripCheckbox(),
-                      12.h.verticalSpace,
-                    ],
-                  );
-                }
-                if (controller.isIntercity.value) {
-                  return Text(
-                    'only_from_to_applicable'.trParams({
-                      'from': controller.intercityOffer!.from,
-                      'to': controller.intercityOffer!.to,
-                    }),
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      color: _infoBase,
-                    ),
-                  );
-                }
-                return SizedBox();
-              }),
+          child: Obx(() {
+            final isNewContact = controller.isNewContact.value;
+            print(isNewContact);
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _TopChips(),
+                18.h.verticalSpace,
+                if (isNewContact) NewContactView(),
+                if (!isNewContact) ...[
+                  const _AddressBlock(), // ⬅️ card + floating plus
+                  12.h.verticalSpace,
+                  Obx(() {
+                    if (controller.isNow.value) {
+                      return Column(
+                        children: [
+                          if (controller.isNow.value)
+                            const _RoundTripCheckbox(),
+                          12.h.verticalSpace,
+                        ],
+                      );
+                    }
+                    if (controller.isIntercity.value) {
+                      return Text(
+                        'only_from_to_applicable'.trParams({
+                          'from': controller.intercityOffer!.from,
+                          'to': controller.intercityOffer!.to,
+                        }),
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          color: _infoBase,
+                        ),
+                      );
+                    }
+                    return SizedBox();
+                  }),
 
-              ..._PopularPlacesList(), // ⬅️ now localized
-              8.h.verticalSpace,
+                  ..._PopularPlacesList(), // ⬅️ now localized
+                  8.h.verticalSpace,
 
-              _ActionRow(
-                iconPath: 'assets/ride_icons/set_location.png',
-                title: 'set_location_on_map'.tr,
-                onTap: () => controller.pickOnMap(true),
-              ),
-              _ActionRow(
-                iconPath: 'assets/ride_icons/star_icon.png',
-                title: 'saved_address'.tr,
-                onTap: controller.openSavedAddresses,
-              ),
-              16.h.verticalSpace,
+                  _ActionRow(
+                    iconPath: 'assets/ride_icons/set_location.png',
+                    title: 'set_location_on_map'.tr,
+                    onTap: () => controller.pickOnMap(true),
+                  ),
+                  _ActionRow(
+                    iconPath: 'assets/ride_icons/star_icon.png',
+                    title: 'saved_address'.tr,
+                    onTap: controller.openSavedAddresses,
+                  ),
+                  16.h.verticalSpace,
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12.r),
-                child: Image.asset(
-                  'assets/slider_image.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-              24.h.verticalSpace,
-              SizedBox(
-                width: double.infinity,
-                height: 46.h,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFE53935), // red button
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.r),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12.r),
+                    child: Image.asset(
+                      'assets/slider_image.png',
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  onPressed: () {
-                    showBookingInfoModalSheet(context, controller);
-                  },
-                  child: Text(
-                    'Continue'.tr,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                  24.h.verticalSpace,
+                  SizedBox(
+                    width: double.infinity,
+                    height: 46.h,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFFE53935), // red button
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                      ),
+                      onPressed: () {
+                        showBookingInfoModalSheet(context, controller);
+                      },
+                      child: Text(
+                        'Continue'.tr,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
-          ),
+                ],
+              ],
+            );
+          }),
         ),
       ),
     );
@@ -183,7 +199,8 @@ class _TopChips extends GetView<RequestRideController> {
           chip(
             label: controller.whoLabel,
             icon: Icons.person_outline,
-            chipBg: _chipBg,
+            chipBg: !controller.isNewContact.value ? _chipBg : _neutral800,
+            labelColor: !controller.isNewContact.value ? _text : Colors.white,
           ),
           if (!controller.isIntercity.value) ...[
             SizedBox(width: 8.w),
@@ -409,6 +426,7 @@ void _showContactSheet(BuildContext context, RequestRideController c) {
           selected: current == meTitle,
           onTap: () {
             c.whoLabel.value = meTitle;
+            c.onNewContact();
             Navigator.pop(context);
           },
         ),
@@ -420,6 +438,7 @@ void _showContactSheet(BuildContext context, RequestRideController c) {
           onTap: () {
             c.whoLabel.value = addTitle;
             // TODO: open create-contact flow if needed
+            c.onNewContact();
             Navigator.pop(context);
           },
         ),

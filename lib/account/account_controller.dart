@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../legal/legal_policy_controller.dart';
 import '../routes/app_routes.dart';
 import '../storage/token_storage.dart';
+import '../widgets/delete_account_sheet.dart';
 
 class AccountController extends GetxController {
   final userName = 'Md Kamrul Hasan'.obs;
@@ -21,6 +22,7 @@ class AccountController extends GetxController {
 
   void onTapItem(String key) {
     // Centralized navigation/events
+    print(key);
     switch (key) {
       case 'profile':
         Get.toNamed(Routes.profileDetails);
@@ -41,13 +43,13 @@ class AccountController extends GetxController {
         Get.snackbar('Open', 'Language');
         break;
       case 'notification':
-        // Get.toNamed(Routes.notification);
+        Get.toNamed(Routes.notification);
         break;
       case 'delete_account':
-        // _openDeleteAccountSheet();
+        _openDeleteAccountSheet();
         break;
       case 'change_password':
-        // Get.toNamed(Routes.changePassword);
+        Get.toNamed(Routes.changePassword);
         break;
       case 'tap_sos':
         Get.toNamed(Routes.emergencySos);
@@ -85,20 +87,20 @@ class AccountController extends GetxController {
     Get.toNamed('/notifications');
   }
 
-  // void _openDeleteAccountSheet() {
-  //   Get.bottomSheet(
-  //     DeleteAccountSheet(
-  //       onNo: () => Get.back(), // just close
-  //       onYes: () {
-  //         Get.back(); // close sheet
-  //         Get.toNamed(Routes.deleteAccount);
-  //       },
-  //     ),
-  //     isScrollControlled: true,
-  //     backgroundColor: Colors.transparent,
-  //     barrierColor: Colors.black.withOpacity(0.35),
-  //   );
-  // }s
+  void _openDeleteAccountSheet() {
+    Get.bottomSheet(
+      DeleteAccountSheet(
+        onNo: () => Get.back(), // just close
+        onYes: () {
+          Get.back(); // close sheet
+          Get.toNamed(Routes.deleteAccount);
+        },
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withOpacity(0.35),
+    );
+  }
 
   /// Clear user session and go back to home/login etc.
 

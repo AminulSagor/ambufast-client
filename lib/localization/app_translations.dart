@@ -559,7 +559,7 @@ class AppTranslations extends Translations {
 
       'set_your_destionation': 'Set your destination',
       'drag_map_move': 'Drag map to move pin',
-      'confirm_destionation': 'Confirm dentination ',
+      'confirm_destionation': 'Confirm destination ',
 
       // Low Cost Intercity
       'low_cost_intercity': 'Low Cost Intercity',
@@ -649,6 +649,43 @@ class AppTranslations extends Translations {
       'ago_day': '{x} day ago',
       'ago_week': '{x} week ago',
       'ago_month': '{x} month ago',
+
+      'tk_search_booking': 'Search booking',
+      'tk_upcoming': 'Upcoming',
+      'tk_past': 'Past',
+      'tk_cancelled': 'Cancelled',
+      'tk_today': 'Today',
+      'tk_tomorrow': 'Tomorrow',
+      'tk_bdt': 'BDT',
+      'tk_complete': 'Complete',
+      'tk_cancel': 'Cancelled',
+      'tk_scheduled': 'Scheduled',
+      'tk_upcoming_badge': 'Upcoming',
+      'tk_location': 'Gulshan 1, Dhaka, Bangladesh',
+      'tk_destination': 'Urgent care clinic (101 Elm ST)',
+      'tk_yesterday': 'Yesterday',
+
+      "err_location_service_disabled": "Please enable Location Services",
+      "err_location_permission_denied": "Permission denied",
+      "err_location_permission_denied_forever": "Permission permanently denied",
+      "err_location_unknown": "Unknown location error",
+
+      //New Contact
+      'phone_number': 'Phone Number',
+      'enter_phone_number': 'Enter phone number',
+
+      // saved address
+      'add_new_address': 'Add new address',
+      'home': 'Home',
+      'office': 'Office',
+      'hospital': 'Hospital',
+      'address_name_title': 'Address name',
+      'name_label': 'Name',
+      'enter_name': 'Enter name',
+      'please_enter_name': 'Please enter a name',
+      'address_saved': 'Address saved',
+      'hazrat_airport_title': 'Hazfrat Shahjalal International Airport',
+      'hazrat_airport_sub': 'Airport – Dakshinkhan Rd, Dhaka',
     },
 
     // ======================= BANGLA =======================
@@ -1278,6 +1315,42 @@ class AppTranslations extends Translations {
       'pwd_min': 'পাসওয়ার্ড অন্তত ৬ অক্ষরের হতে হবে',
       'update_success_desc': 'আপনার পাসওয়ার্ড সফলভাবে আপডেট হয়েছে',
       'ok': 'ওকে',
+
+      "err_location_service_disabled": "Please enable Location Services",
+      "err_location_permission_denied": "Permission denied",
+      "err_location_permission_denied_forever": "Permission permanently denied",
+      "err_location_unknown": "Unknown location error",
+      'tk_search_booking': 'ট্রিপ খুঁজুন',
+      'tk_upcoming': 'আসন্ন',
+      'tk_past': 'অতীত',
+      'tk_cancelled': 'ক্যানসেল',
+      'tk_today': 'আজ',
+      'tk_tomorrow': 'আগামীকাল',
+      'tk_bdt': 'টাকা',
+      'tk_complete': 'সম্পূর্ণ',
+      'tk_cancel': 'ক্যানসেল',
+      'tk_scheduled': 'নির্ধারিত',
+      'tk_upcoming_badge': 'আসন্ন',
+      'tk_location': 'গুলশান ১, ঢাকা, বাংলাদেশ',
+      'tk_destination': 'জরুরি সেবা ক্লিনিক (১০১ এলম স্ট্রিট)',
+      'tk_yesterday': 'গতকাল',
+
+      //New contact
+      'phone_number': 'ফোন নম্বর',
+      'enter_phone_number': 'ফোন নম্বর লিখুন',
+
+      // saved address
+      'add_new_address': 'নতুন ঠিকানা যোগ করুন',
+      'home': 'ঘর',
+      'office': 'অফিস',
+      'hospital': 'হাসপাতাল',
+      'address_name_title': 'ঠিকানার নাম',
+      'name_label': 'নাম',
+      'enter_name': 'নাম লিখুন',
+      'please_enter_name': 'অনুগ্রহ করে নাম লিখুন',
+      'address_saved': 'ঠিকানা সংরক্ষণ হয়েছে',
+      'hazrat_airport_title': 'হযরত শাহজালাল আন্তর্জাতিক বিমানবন্দর',
+      'hazrat_airport_sub': 'বিমানবন্দর – দক্ষিণখান সড়ক, ঢাকা',
     },
   };
 }

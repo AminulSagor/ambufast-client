@@ -1,9 +1,9 @@
 // lib/home/home_controller.dart
 import 'package:get/get.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
+// import 'package:geolocator/geolocator.dart';
+// import 'package:geocoding/geocoding.dart';
 
-import '../dialog_box/enable_location_dialog.dart';
+// import '../dialog_box/enable_location_dialog.dart';
 import '../model/low_cost_intercity_model.dart';
 import '../model/service_tile_model.dart';
 import '../model/trip_model.dart';
@@ -11,7 +11,7 @@ import '../routes/app_routes.dart';
 
 class HomeController extends GetxController {
   // --- State
-  final location = 'Your location is not available'.obs;
+  // final location = 'Your location is not available'.obs;
   final upcomingTrips = <Trip>[].obs;
   final emergencyTiles = <ServiceTile>[].obs;
   final nonEmergencyTiles = <ServiceTile>[].obs;
@@ -41,7 +41,7 @@ class HomeController extends GetxController {
   void onCampaignTap(Campaign c) {}
 
   void onIntercityViewAll() {
-    Get.toNamed('low-cost-intercity');
+    Get.toNamed(Routes.lowCostIntercity);
   }
 
   void onSupportNow() {
@@ -52,75 +52,75 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.requestSupport);
   }
 
-  /// Called when the location row in the AppBar is tapped.
-  /// If location is unknown, show the enable-location dialog.
-  void onLocationTap() {
-    final missing =
-        location.value.isEmpty || location.value.contains('not available');
+  // /// Called when the location row in the AppBar is tapped.
+  // /// If location is unknown, show the enable-location dialog.
+  // void onLocationTap() {
+  //   final missing =
+  //       location.value.isEmpty || location.value.contains('not available');
 
-    if (missing) {
-      Get.dialog(
-        EnableLocationDialog(
-          onUseMyLocation: () async {
-            Get.back(); // close dialog
-            await _useMyLocation();
-          },
-          onSkip: () => Get.back(),
-        ),
-        barrierDismissible: true,
-      );
-    } else {
-      // TODO: open a location picker / saved places sheet
-    }
-  }
+  //   if (missing) {
+  //     Get.dialog(
+  //       EnableLocationDialog(
+  //         onUseMyLocation: () async {
+  //           Get.back(); // close dialog
+  //           await _useMyLocation();
+  //         },
+  //         onSkip: () => Get.back(),
+  //       ),
+  //       barrierDismissible: true,
+  //     );
+  //   } else {
+  //     // TODO: open a location picker / saved places sheet
+  //   }
+  // }
 
-  // --- Location helpers
-  Future<void> _useMyLocation() async {
-    try {
-      // services enabled?
-      final serviceOn = await Geolocator.isLocationServiceEnabled();
-      if (!serviceOn) {
-        Get.snackbar('Location', 'Please enable Location Services');
-        return;
-      }
+  // // --- Location helpers
+  // Future<void> _useMyLocation() async {
+  //   try {
+  //     // services enabled?
+  //     final serviceOn = await Geolocator.isLocationServiceEnabled();
+  //     if (!serviceOn) {
+  //       Get.snackbar('Location', 'Please enable Location Services');
+  //       return;
+  //     }
 
-      // permissions
-      LocationPermission perm = await Geolocator.checkPermission();
-      if (perm == LocationPermission.denied) {
-        perm = await Geolocator.requestPermission();
-      }
-      if (perm == LocationPermission.deniedForever ||
-          perm == LocationPermission.denied) {
-        Get.snackbar('Location', 'Permission denied');
-        return;
-      }
+  //     // permissions
+  //     LocationPermission perm = await Geolocator.checkPermission();
+  //     if (perm == LocationPermission.denied) {
+  //       perm = await Geolocator.requestPermission();
+  //     }
+  //     if (perm == LocationPermission.deniedForever ||
+  //         perm == LocationPermission.denied) {
+  //       Get.snackbar('Location', 'Permission denied');
+  //       return;
+  //     }
 
-      // get position
-      final pos = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-      );
+  //     // get position
+  //     final pos = await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high,
+  //     );
 
-      // reverse geocode (best effort)
-      String pretty =
-          '${pos.latitude.toStringAsFixed(5)}, ${pos.longitude.toStringAsFixed(5)}';
-      try {
-        final pms = await placemarkFromCoordinates(pos.latitude, pos.longitude);
-        if (pms.isNotEmpty) {
-          final p = pms.first;
-          final parts = [
-            if ((p.subLocality ?? '').isNotEmpty) p.subLocality,
-            if ((p.locality ?? '').isNotEmpty) p.locality,
-            if ((p.country ?? '').isNotEmpty) p.country,
-          ];
-          pretty = parts.join(', ');
-        }
-      } catch (_) {}
+  //     // reverse geocode (best effort)
+  //     String pretty =
+  //         '${pos.latitude.toStringAsFixed(5)}, ${pos.longitude.toStringAsFixed(5)}';
+  //     try {
+  //       final pms = await placemarkFromCoordinates(pos.latitude, pos.longitude);
+  //       if (pms.isNotEmpty) {
+  //         final p = pms.first;
+  //         final parts = [
+  //           if ((p.subLocality ?? '').isNotEmpty) p.subLocality,
+  //           if ((p.locality ?? '').isNotEmpty) p.locality,
+  //           if ((p.country ?? '').isNotEmpty) p.country,
+  //         ];
+  //         pretty = parts.join(', ');
+  //       }
+  //     } catch (_) {}
 
-      location.value = pretty;
-    } catch (e) {
-      Get.snackbar('Location', 'Failed to get location');
-    }
-  }
+  //     location.value = pretty;
+  //   } catch (e) {
+  //     Get.snackbar('Location', 'Failed to get location');
+  //   }
+  // }
 
   // --- Mock / seed
   void _seedStaticData() {

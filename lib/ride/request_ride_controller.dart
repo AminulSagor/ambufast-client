@@ -1,6 +1,7 @@
 // lib/ride/request_ride_controller.dart
 import 'package:ambufast/low_cost_intercity/low_cost_intercity_controller.dart';
 import 'package:ambufast/model/driver_model.dart';
+import 'package:ambufast/new_contact/new_contact_controller.dart';
 import 'package:ambufast/widgets/modal_sheet_widgets/lowest_fare_widget.dart';
 import 'package:ambufast/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -107,7 +108,9 @@ class RequestRideController extends GetxController {
     Get.toNamed(Routes.requestRideBook);
   }
 
-  void openSavedAddresses() {}
+  void openSavedAddresses() {
+    Get.toNamed(Routes.savedAddress);
+  }
 
   void continueFlow() {
     if (pickupCtrl.text.trim().isEmpty || dropoffCtrl.text.trim().isEmpty) {
@@ -359,6 +362,19 @@ class RequestRideController extends GetxController {
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
     );
+  }
+
+  // New contact switch
+  final isNewContact = false.obs;
+  void onNewContact() {
+    if (whoLabel.value == 'contact_add_title'.tr) {
+      print(whoLabel.value);
+      isNewContact.value = true;
+      Get.put(NewContactController());
+    } else {
+      isNewContact.value = false;
+      Get.delete<NewContactController>();
+    }
   }
 }
 

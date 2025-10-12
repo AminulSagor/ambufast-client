@@ -42,6 +42,7 @@ flutter:
     - assets/account/
     - assets/sos/
     - assets/ride_images/
+    - assets/notification/
 
 flutter_native_splash:
   # Common (Android + iOS)

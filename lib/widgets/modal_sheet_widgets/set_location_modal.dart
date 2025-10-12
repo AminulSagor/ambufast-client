@@ -1,4 +1,4 @@
-import 'package:ambufast/ride/request_ride_controller.dart';
+import 'package:ambufast/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../utils/bottom_sheet_helper.dart';
 import '../custom_button.dart';
 
-class SetLocationModal extends GetView<RequestRideController> {
+class SetLocationModal extends StatelessWidget {
   final String headerText;
   final String? subHeaderText;
   final String address;
@@ -25,6 +25,7 @@ class SetLocationModal extends GetView<RequestRideController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        15.h.verticalSpace,
         bottomSheetHeader(headerText, subTitle: subHeaderText),
         SizedBox(height: 24.h),
         Container(
@@ -32,7 +33,7 @@ class SetLocationModal extends GetView<RequestRideController> {
           margin: EdgeInsets.symmetric(horizontal: 16.w),
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
-            color: const Color(0xFFEEEEEE), // Light grey background
+            color: neutral100,
             borderRadius: BorderRadius.circular(8.r),
           ),
           child: Row(

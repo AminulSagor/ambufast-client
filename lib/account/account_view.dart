@@ -84,7 +84,7 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/notification_icon.png',
                         label: 'notification'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('notification'),
                       ),
                     ],
                   ),
@@ -96,13 +96,19 @@ class AccountView extends GetView<AccountController> {
                       _RowItem(
                         icon: 'assets/account/change_password_icon.png',
                         label: 'change_password'.tr,
-                        onTap: () => controller.onItemTap(Routes.home),
+                        onTap: () => controller.onTapItem('change_password'),
                       ),
                       divider,
                       _RowItem(
                         icon: 'assets/account/sos_icon.png',
                         label: 'tap_emergency_sos'.tr,
-                        onTap: () => controller.onItemTap(Routes.emergencySos),
+                        onTap: () => controller.onTapItem('tap_sos'),
+                      ),
+                      divider,
+                      _RowItem(
+                        icon: 'assets/account/delete_icon.png',
+                        label: 'delete_account'.tr,
+                        onTap: () => controller.onTapItem('delete_account'),
                       ),
                     ],
                   ),

@@ -42,13 +42,17 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<!-- You can place the location usage description anywhere at top level -->
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app uses your location to show nearby requests.</string>
+		<!-- <key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app uses your location to show nearby requests.</string> -->
 		<key>CADisableMinimumFrameDurationOnPhone</key>
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>We use your location to show nearby services.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>We use your location to show nearby services.</string>
 	</dict>
 </plist>

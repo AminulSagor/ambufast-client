@@ -28,6 +28,10 @@ abstract class Routes {
   static const contactSupport = '/contact-support';
   static const legalPolicy = '/legal-policy';
   static const cancellationPaymentInfo = '/cancellation-payment-info';
+  static const changePassword = '/change-password';
+  static const deleteAccount = '/delete-account';
+  static const notification = '/notification';
+  static const activity = '/activity';
 
   static const requestRideBook = '/request-ride-book';
   static const requestRidePayment = '/request-ride-payment';
@@ -35,4 +39,7 @@ abstract class Routes {
 
   static const lowCostIntercity = '/low-cost-intercity';
   static const intercityDetails = '/intercity-details';
+  static const savedAddress = '/saved-address';
+  static const addChangeAddress = '/add-change-address';
+  static const setLocationMap = '/set-location-map';
 }

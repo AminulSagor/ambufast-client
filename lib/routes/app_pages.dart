@@ -4,18 +4,26 @@ import 'package:ambufast/ride/choose_date_time_view.dart';
 import 'package:ambufast/ride/request_ride_book_view.dart';
 import 'package:ambufast/ride/request_ride_payment_controller.dart';
 import 'package:ambufast/ride/request_ride_payment_view.dart';
+import 'package:ambufast/saved_address/add_change_address_view.dart';
+import 'package:ambufast/saved_address/widgets/set_location_map.dart';
 import 'package:get/get.dart';
 
 import '../account/account_controller.dart';
 import '../account/account_view.dart';
 import '../account/create_account_controller.dart';
 import '../account/create_account_view.dart';
+import '../activity/activity_controller.dart';
+import '../activity/activity_view.dart';
 import '../all_review/all_review_controller.dart';
 import '../all_review/all_review_view.dart';
 import '../bkash_payment/bkash_payment_controller.dart';
 import '../bkash_payment/bkash_payment_view.dart';
+import '../change_password/change_password_controller.dart';
+import '../change_password/change_password_view.dart';
 import '../contact_support/contact_support_controller.dart';
 import '../contact_support/contact_support_view.dart';
+import '../delete_account/delete_account_controller.dart';
+import '../delete_account/delete_account_view.dart';
 import '../donate/donate_money_controller.dart';
 import '../donate/donate_money_view.dart';
 import '../donate_payment_setection/support_payment_controller.dart';
@@ -42,6 +50,8 @@ import '../low_cost_intercity/intercity_detail_controller.dart';
 import '../low_cost_intercity/low_cost_intercity_view.dart';
 import '../my_donation_request/my_donation_request_controller.dart';
 import '../my_donation_request/my_donation_request_view.dart';
+import '../notification/notification_controller.dart';
+import '../notification/notification_view.dart';
 import '../payment_success/payment_success_controller.dart';
 import '../payment_success/payment_success_view.dart';
 import '../profile_details/profile_details_controller.dart';
@@ -52,6 +62,8 @@ import '../request_submission_success/request_submission_success_controller.dart
 import '../request_submission_success/request_submission_success_view.dart';
 import '../ride/request_ride_controller.dart';
 import '../ride/request_ride_view.dart';
+import '../saved_address/saved_address_controller.dart';
+import '../saved_address/saved_address_view.dart';
 import '../select_language/select_language_controller.dart';
 import '../select_language/select_language_view.dart';
 import '../set_password/set_password_controller.dart';
@@ -353,9 +365,69 @@ class AppPages {
         Get.create<LegalPolicyController>(() => LegalPolicyController());
       }),
     ),
+
     GetPage(
       name: Routes.cancellationPaymentInfo,
       page: () => const PaymentCancellationInfoView(),
     ),
+
+    GetPage(
+      name: Routes.changePassword,
+      page: () => const ChangePasswordView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<ChangePasswordController>()) {
+          Get.delete<ChangePasswordController>(force: true);
+        }
+        Get.put(ChangePasswordController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.deleteAccount,
+      page: () => const DeleteAccountView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<DeleteAccountController>()) {
+          Get.delete<DeleteAccountController>(force: true);
+        }
+        Get.put(DeleteAccountController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.notification,
+      page: () => const NotificationView(),
+      binding: BindingsBuilder(() {
+        if (Get.isRegistered<NotificationController>()) {
+          Get.delete<NotificationController>(force: true);
+        }
+        Get.put(NotificationController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.activity,
+      page: () => const ActivityView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ActivityController>(() => ActivityController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.savedAddress,
+      page: () => const SavedAddressView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<SavedAddressController>(() => SavedAddressController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.addChangeAddress,
+      page: () => const AddChangeAddressView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<SavedAddressController>(() => SavedAddressController());
+      }),
+    ),
+
+    GetPage(name: Routes.setLocationMap, page: () => const SetLocationMap()),
   ];
 }

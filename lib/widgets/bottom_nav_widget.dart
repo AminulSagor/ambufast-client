@@ -1,3 +1,4 @@
+import 'package:ambufast/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,25 +6,21 @@ class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int>? onTap;
 
-  const BottomNavBar({
-    super.key,
-    this.currentIndex = 0,
-    this.onTap,
-  });
+  const BottomNavBar({super.key, this.currentIndex = 0, this.onTap});
 
   void _defaultNavigate(int index) {
     switch (index) {
       case 0:
-        Get.offAllNamed('/home');
+        Get.offAllNamed(Routes.home);
         break;
       case 1:
-        Get.offAllNamed('/service');
+        Get.offAllNamed(Routes.service);
         break;
       case 2:
-        Get.offAllNamed('/home');
+        Get.offAllNamed(Routes.activity);
         break;
       case 3:
-        Get.offAllNamed('/account');
+        Get.offAllNamed(Routes.account);
         break;
       default:
         break;
@@ -37,23 +34,23 @@ class BottomNavBar extends StatelessWidget {
     final items = <_BottomItem>[
       const _BottomItem(
         label: 'Home',
-        active:  'assets/bottom_navigation/home.png',
-        inactive:'assets/bottom_navigation/not_selected_home.png',
+        active: 'assets/bottom_navigation/home.png',
+        inactive: 'assets/bottom_navigation/not_selected_home.png',
       ),
       const _BottomItem(
         label: 'Service',
-        active:  'assets/bottom_navigation/service.png',
-        inactive:'assets/bottom_navigation/not_selected_service.png',
+        active: 'assets/bottom_navigation/service.png',
+        inactive: 'assets/bottom_navigation/not_selected_service.png',
       ),
       const _BottomItem(
         label: 'Activity',
-        active:  'assets/bottom_navigation/activity.png',
-        inactive:'assets/bottom_navigation/not_selected_activity.png',
+        active: 'assets/bottom_navigation/activity.png',
+        inactive: 'assets/bottom_navigation/not_selected_activity.png',
       ),
       const _BottomItem(
         label: 'Account',
-        active:  'assets/bottom_navigation/account.png',
-        inactive:'assets/bottom_navigation/not_selected_account.png',
+        active: 'assets/bottom_navigation/account.png',
+        inactive: 'assets/bottom_navigation/not_selected_account.png',
       ),
     ];
 

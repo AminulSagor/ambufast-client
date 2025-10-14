@@ -4,11 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CancelConfirmationModal extends GetView<RequestRideController> {
+class CancelConfirmationModal extends StatelessWidget {
   const CancelConfirmationModal({super.key});
 
   @override
   Widget build(BuildContext context) {
+    /// NEED CHANGING - should have own controller
+    final RequestRideController controller =
+        (Get.isRegistered<RequestRideController>())
+        ? Get.find<RequestRideController>()
+        : Get.put(RequestRideController());
+
+    /// -------------x-------------
+
     final sheetHeightFactor = 0.9;
     final screenHeight = Get.size.height;
     final sheetHeight = screenHeight * sheetHeightFactor;

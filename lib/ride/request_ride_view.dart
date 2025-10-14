@@ -1,4 +1,5 @@
 // lib/ride/request_ride_view.dart
+import 'package:ambufast/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,12 +34,13 @@ class RequestRideView extends GetView<RequestRideController> {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           child: Obx(() {
             final isNewContact = controller.isNewContact.value;
-            print(isNewContact);
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const _TopChips(),
-                18.h.verticalSpace,
+                if (!controller.isChangeDestination.value) ...[
+                  const _TopChips(),
+                  18.h.verticalSpace,
+                ],
                 if (isNewContact) NewContactView(),
                 if (!isNewContact) ...[
                   const _AddressBlock(), // ⬅️ card + floating plus
@@ -103,7 +105,11 @@ class RequestRideView extends GetView<RequestRideController> {
                         ),
                       ),
                       onPressed: () {
-                        showBookingInfoModalSheet(context, controller);
+                        if (controller.isChangeDestination.value) {
+                          Get.toNamed(Routes.requestRideBook);
+                        } else {
+                          showBookingInfoModalSheet();
+                        }
                       },
                       child: Text(
                         'Continue'.tr,
@@ -800,10 +806,13 @@ List<Widget> _PopularPlacesList() {
             style: TextStyle(fontSize: 12.sp, color: _label),
           ),
           onTap: () {
-            if (c.pickupCtrl.text.isEmpty) {
-              c.pickupCtrl.text = title;
+            if (c.isChangeDestination.value) {
             } else {
-              c.dropoffCtrl.text = title;
+              if (c.pickupCtrl.text.isEmpty) {
+                c.pickupCtrl.text = title;
+              } else {
+                c.dropoffCtrl.text = title;
+              }
             }
           },
         ),
@@ -847,17 +856,13 @@ class _ActionRow extends StatelessWidget {
   }
 }
 
-void showBookingInfoModalSheet(
-  BuildContext context,
-  RequestRideController controller,
-) {
+void showBookingInfoModalSheet() {
+  final controller = Get.find<RequestRideController>();
   Get.bottomSheet(
     // The entire UI is now wrapped in a Container with proper styling
     Container(
       // Handles keyboard input pushing the view up
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
+      padding: EdgeInsets.only(bottom: Get.bottomBarHeight - 60.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

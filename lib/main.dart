@@ -31,7 +31,7 @@ Future<void> main() async {
   final hasToken = sp.getString('auth_token') != null;
 
   // 4️⃣ decide initial route
-  final initialRoute = hasToken ? Routes.home : Routes.home;
+  final initialRoute = hasToken ? Routes.rating : Routes.rating;
 
   runApp(AmbuFastApp(initialLocale: initialLocale, initialRoute: initialRoute));
 }

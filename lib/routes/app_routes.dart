@@ -33,6 +33,9 @@ abstract class Routes {
   static const notification = '/notification';
   static const activity = '/activity';
 
+  static const rating = '/rating';
+  static const tripDetails = '/trip-details';
+
   static const requestRideBook = '/request-ride-book';
   static const requestRidePayment = '/request-ride-payment';
   static const chooseDateTime = '/choose-date-time';
@@ -42,4 +45,10 @@ abstract class Routes {
   static const savedAddress = '/saved-address';
   static const addChangeAddress = '/add-change-address';
   static const setLocationMap = '/set-location-map';
+  static const tripTrack = '/trip-track';
+  static const tripPayment = '/trip-payment';
+  static const changeDestination = '/trip-change-destination';
+
+  static const service = '/service';
+  static const serviceDetails = '/service-details';
 }

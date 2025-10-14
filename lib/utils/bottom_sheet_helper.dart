@@ -1,3 +1,4 @@
+import 'package:ambufast/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,18 +14,34 @@ Widget divider() {
 Widget bottomSheetHeader(
   String title, {
   bool showGradientDivider = true,
+  bool showDragHandle = true,
   String? subTitle,
+  Color? titleColor,
+  Color? subTitleColor,
 }) {
   return Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
+      if (showDragHandle) ...[
+        SizedBox(height: 8.h),
+        // drag handle
+        Container(
+          width: 48.w,
+          height: 4.h,
+          decoration: BoxDecoration(
+            color: neutral100,
+            borderRadius: BorderRadius.circular(3.r),
+          ),
+        ),
+        SizedBox(height: 12.h),
+      ],
       Text(
         title.tr,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w600,
-          color: Color(0xFF1C2130),
+          color: titleColor ?? Color(0xFF1C2130),
         ),
       ),
       if (subTitle != null)
@@ -34,7 +51,7 @@ Widget bottomSheetHeader(
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.w400,
-            color: Color(0xFF1C2130),
+            color: subTitleColor ?? Color(0xFF1C2130),
           ),
         ),
       16.h.verticalSpace,

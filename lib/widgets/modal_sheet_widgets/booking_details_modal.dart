@@ -1,5 +1,5 @@
+import 'package:ambufast/trip_track/trip_track_controller.dart';
 import 'package:ambufast/widgets/custom_button.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../ride/choose_date_time_controller.dart';
 import '../../ride/request_ride_controller.dart';
 import '../../utils/bottom_sheet_helper.dart';
+import '../../utils/colors.dart';
 
 class BookingDetailsModal extends GetView<RequestRideController> {
   const BookingDetailsModal({super.key});
@@ -32,6 +33,8 @@ class BookingDetailsModal extends GetView<RequestRideController> {
         ? 'Rural'
         : 'Scheduled';
 
+    final isChangeDestination = controller.isChangeDestination.value;
+
     return Column(
       children: [
         // Header
@@ -39,143 +42,154 @@ class BookingDetailsModal extends GetView<RequestRideController> {
 
         // Details Rows (all labels/values are now localized keys)
         divider(),
-        _buildDetailRow(
-          'date_time',
-          dateTimeValue,
-          controller: controller,
-          trailingIcon: trailingIcon,
-        ),
-        divider(),
-        _buildDetailRow('contact', 'for_me', controller: controller),
-        divider(),
-        _buildDetailRow(
-          'vehicle',
-          'ac_ambulance',
-          controller: controller,
-          trailingIcon: trailingIcon,
-        ),
-        divider(),
-        if (!isIntercity) ...[
+        if (!isChangeDestination) ...[
           _buildDetailRow(
-            'trip_type',
-            'single_trip',
+            'date_time',
+            dateTimeValue,
             controller: controller,
             trailingIcon: trailingIcon,
           ),
           divider(),
+          _buildDetailRow('contact', 'for_me', controller: controller),
+          divider(),
+          _buildDetailRow(
+            'vehicle',
+            'ac_ambulance',
+            controller: controller,
+            trailingIcon: trailingIcon,
+          ),
+          divider(),
+          if (!isIntercity) ...[
+            _buildDetailRow(
+              'trip_type',
+              'single_trip',
+              controller: controller,
+              trailingIcon: trailingIcon,
+            ),
+            divider(),
+          ],
+          _buildDetailRow(
+            'category',
+            category,
+            isCat: true,
+            controller: controller,
+          ),
         ],
-        _buildDetailRow(
-          'category',
-          category,
-          isCat: true,
-          controller: controller,
-        ),
 
         divider(),
         _buildLocationDisplay(),
 
         // Lowest Fare Section
-        Container(
-          width: double.infinity,
-          color: Color(0xFFFDD6D3).withAlpha(155),
-          padding: EdgeInsets.symmetric(vertical: 8.h),
-          child: GestureDetector(
-            onTap: controller.onLowestFareClick,
-            child: Text(
-              'lowest_fare'.tr,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
+        if (!isChangeDestination) ...[
+          Container(
+            width: double.infinity,
+            color: Color(0xFFFDD6D3).withAlpha(155),
+            padding: EdgeInsets.symmetric(vertical: 8.h),
+            child: GestureDetector(
+              onTap: controller.onLowestFareClick,
+              child: Text(
+                'lowest_fare'.tr,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87,
+                ),
               ),
             ),
           ),
-        ),
 
-        // Ad Banner (Placeholder)
-        GestureDetector(
-          onTap: controller.onLowestFareClick,
-          child: Image.asset(
-            'assets/ride_images/lowest_fare.png',
-            fit: BoxFit.cover,
-            width: double.infinity,
+          // Ad Banner (Placeholder)
+          GestureDetector(
+            onTap: controller.onLowestFareClick,
+            child: Image.asset(
+              'assets/ride_images/lowest_fare.png',
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
           ),
-        ),
-        SizedBox(height: 16.h),
-
-        // Total Fare
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: [
-                  Text(
-                    'total'.tr,
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w600,
+          SizedBox(height: 16.h),
+          // Total Fare
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Text(
+                      'total'.tr,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 5.w),
-                  Text(
-                    'without_toll_fee'.tr,
-                    textAlign: TextAlign.end,
-                    style: TextStyle(
-                      fontSize: 9.sp,
-                      color: Colors.amber.shade700,
-                    ),
-                  ), // Localized
-                ],
-              ),
-              Text(
-                'bdt_fare'.tr,
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 8.h),
-
-        // Payment Method
-        divider(),
-        SizedBox(height: 8.h),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Row(
-            children: [
-              Image.asset('assets/ride_icons/money.png'),
-              SizedBox(width: 5.w),
-              Text(
-                'cash'.tr,
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
-              ),
-              Spacer(),
-              Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.grey.shade700,
-                size: 16,
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 16.h),
-
-        // Next Button
-        Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
-          child: isNow || isIntercity
-              ? CustomButton(
-                  btnTxt: 'request_send',
-                  onTap: controller.onSendRequest,
-                )
-              : CustomButton(
-                  btnTxt: 'confirm_trip',
-                  onTap: controller.onConfirmTrip,
+                    SizedBox(width: 5.w),
+                    Text(
+                      'without_toll_fee'.tr,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                        color: Colors.amber.shade700,
+                      ),
+                    ), // Localized
+                  ],
                 ),
-        ),
+                Text(
+                  'bdt_fare'.tr,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 8.h),
+
+          // Payment Method
+          divider(),
+
+          SizedBox(height: 8.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Row(
+              children: [
+                Image.asset('assets/ride_icons/money.png'),
+                SizedBox(width: 5.w),
+                Text(
+                  'cash'.tr,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Spacer(),
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: Colors.grey.shade700,
+                  size: 16,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 16.h),
+          // Next Button
+          Padding(
+            padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
+            child: (isNow || isIntercity)
+                ? CustomButton(
+                    btnTxt: 'request_send',
+                    onTap: controller.onSendRequest,
+                  )
+                : CustomButton(
+                    btnTxt: 'confirm_trip',
+                    onTap: controller.onConfirmTrip,
+                  ),
+          ),
+        ],
+
+        if (isChangeDestination) _buildChangeDestinationBottom(),
       ],
     );
   }
@@ -321,5 +335,89 @@ Widget _buildLocationDisplay() {
         SizedBox(height: 8.h),
       ],
     ),
+  );
+}
+
+Widget _buildChangeDestinationBottom() {
+  final controller = Get.find<RequestRideController>();
+  final tripController = Get.find<TripTrackController>();
+  final s = tripController.state.value!;
+  return Column(
+    children: [
+      Container(
+        color: adminBg,
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Column(
+          children: [
+            16.h.verticalSpace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Text(
+                      'total'.tr,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(width: 5.w),
+                    Text(
+                      'without_toll_fee'.tr,
+                      textAlign: TextAlign.end,
+                      style: TextStyle(
+                        fontSize: 9.sp,
+                        color: Colors.amber.shade700,
+                      ),
+                    ), // Localized
+                  ],
+                ),
+                Text(
+                  'bdt_fare'.tr,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            18.h.verticalSpace,
+            // Due row
+            Row(
+              children: [
+                Text(
+                  'due'.tr,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    color: neutral700,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width: 6.w),
+                const Icon(Icons.info, size: 16, color: neutral700),
+                const Spacer(),
+                Text(
+                  tripController.formatCurrency(s.dueAmount, symbol: 'BDT '),
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: neutral700,
+                  ),
+                ),
+              ],
+            ),
+            16.h.verticalSpace,
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w),
+        child: CustomButton(
+          btnTxt: 'request_driver',
+          onTap: controller.onChangeRequest,
+        ),
+      ),
+    ],
   );
 }

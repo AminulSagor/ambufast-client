@@ -1,6 +1,6 @@
 // lib/ride/request_ride_controller.dart
 import 'package:ambufast/low_cost_intercity/low_cost_intercity_controller.dart';
-import 'package:ambufast/model/driver_model.dart';
+import 'package:ambufast/model/driver_info.dart';
 import 'package:ambufast/new_contact/new_contact_controller.dart';
 import 'package:ambufast/widgets/modal_sheet_widgets/lowest_fare_widget.dart';
 import 'package:ambufast/routes/app_routes.dart';
@@ -11,6 +11,9 @@ import '../widgets/modal_sheet_widgets/cancel_confirmation_modal.dart';
 import '../widgets/modal_sheet_widgets/short_info_modal.dart';
 
 class RequestRideController extends GetxController {
+  /// checking if its change destination
+  final isChangeDestination = false.obs;
+
   final isIntercity = false.obs;
   IntercityOffer? intercityOffer;
 
@@ -151,11 +154,12 @@ class RequestRideController extends GetxController {
   // booking ride
   final fixedModalIndex = 0.obs;
 
-  final selectedDriver = Driver(
-    'Md Kamrul Hasan',
-    5.0,
-    1.2,
-    'Toyota | Dhaka Metro 12 5896',
+  final selectedDriver = DriverInfo(
+    name: 'Md Kamrul Hasan',
+    rating: 5.0,
+    ratingCount: 1.2,
+    vehicleDetails: 'Toyota | Dhaka Metro 12 5896',
+    phone: '01812345678',
   ).obs;
 
   @override
@@ -246,12 +250,22 @@ class RequestRideController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     checkIsNow();
     // Initialize all reasons to false (unchecked)
     selectedReasons = {for (var key in reasonKeys) key: false}.obs;
 
-    //cheking if intercity menu
     if (Get.arguments == null) return;
+
+    /// checking if its change destination
+    if (Get.arguments['changeDestination'] == null) {
+      isChangeDestination.value = false;
+    } else {
+      isChangeDestination.value = Get.arguments['changeDestination'] as bool;
+    }
+
+    //cheking if intercity menu
+    if (Get.arguments['isIntercity'] == null) return;
     isIntercity.value = Get.arguments['isIntercity'] as bool;
     if (isIntercity.value) {
       intercityOffer = Get.arguments['intercityOffer'] as IntercityOffer;
@@ -312,6 +326,17 @@ class RequestRideController extends GetxController {
   void onSendRequest() {
     fixedModalIndex.value = 1;
   }
+
+  /// Change destination
+  void onChangeRequest() {
+    fixedModalIndex.value = 2;
+  }
+
+  void onChangeRequestAccept() {
+    Get.until((route) => route.settings.name == Routes.tripTrack);
+  }
+
+  ///-------------///
 
   void onConfirmTrip() {
     Get.toNamed(Routes.requestRidePayment);

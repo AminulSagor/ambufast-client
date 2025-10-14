@@ -23,6 +23,7 @@ dependencies:
   url_launcher:
   mime: ^2.0.0
   image_picker:
+  share_plus:
 
 dev_dependencies:
   flutter_test:
@@ -43,6 +44,7 @@ flutter:
     - assets/sos/
     - assets/ride_images/
     - assets/notification/
+    - assets/trip/
 
 flutter_native_splash:
   # Common (Android + iOS)

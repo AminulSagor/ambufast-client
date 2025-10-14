@@ -1,3 +1,5 @@
+import 'package:ambufast/dialog_box/payment_option_dialogbox.dart';
+import 'package:ambufast/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -34,7 +36,13 @@ class RequestRidePaymentController extends GetxController {
 
   void processPayment() {
     Get.back(); // Close the screen
-    Get.snackbar('Processing', 'Payment is being processed...');
+    Get.dialog(
+      PaymentOptionDialogbox(
+        onSelect: () {
+          Get.toNamed(Routes.bkashPayment);
+        },
+      ),
+    );
   }
 
   @override

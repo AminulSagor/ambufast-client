@@ -52,6 +52,10 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.requestSupport);
   }
 
+  void onNotificationTap() {
+    Get.toNamed(Routes.notification);
+  }
+
   // /// Called when the location row in the AppBar is tapped.
   // /// If location is unknown, show the enable-location dialog.
   // void onLocationTap() {

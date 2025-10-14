@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../utils/bottom_sheet_helper.dart';
-import '../widgets/driver_details.dart';
+import '../widgets/driver_details_card.dart';
 import '../widgets/modal_sheet_widgets/set_location_modal.dart';
 import 'request_ride_controller.dart';
 
@@ -206,20 +206,6 @@ Widget _fixedBottomSheet({required RequestRideController controller}) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        // Drag handle (for aesthetic)
-        if (controller.isNow.value)
-          Center(
-            child: Container(
-              margin: EdgeInsets.only(top: 8.h),
-              width: 40.w, // Responsive width
-              height: 5.h, // Responsive height
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(5.r), // Responsive radius
-              ),
-            ),
-          ),
-        SizedBox(height: 20.h),
         Obx(() {
           final index = controller.fixedModalIndex.value;
           if (index == 0) {
@@ -243,11 +229,17 @@ Widget _fixedBottomSheet({required RequestRideController controller}) {
             );
           }
           if (index == 2) {
+            final isIntercity = controller.isIntercity.value;
+            final isChangeDestination = controller.isChangeDestination.value;
             Future.delayed(const Duration(seconds: 3), () {
-              controller.onDriverConfirm();
+              if (isChangeDestination) {
+                controller.onChangeRequestAccept();
+              } else {
+                controller.onDriverConfirm();
+              }
             });
             return DriverLoadingShimmer(
-              headTitle: controller.isIntercity.value
+              headTitle: (isIntercity || isChangeDestination)
                   ? 'wait_driver_confirm'
                   : 'finding_drivers_header',
             );
@@ -293,7 +285,10 @@ Widget _confirmDriverModal({required RequestRideController controller}) {
         child: Column(
           children: [
             SizedBox(height: 8.h),
-            DriverDetails(),
+            DriverDetailsCard(
+              driverInfo: controller.selectedDriver.value,
+              showTimer: true,
+            ),
             _buildGallery(),
             SizedBox(height: 10.h),
             divider(),

@@ -8,6 +8,8 @@ class CustomButton extends StatelessWidget {
   final Color? btnColor;
   final Color? txtColor;
   final Color? borderColor;
+  final Widget? leading;
+  final Widget? trailing;
   const CustomButton({
     super.key,
     required this.btnTxt,
@@ -15,6 +17,8 @@ class CustomButton extends StatelessWidget {
     this.btnColor,
     this.txtColor,
     this.borderColor,
+    this.leading,
+    this.trailing,
   });
 
   @override
@@ -30,13 +34,20 @@ class CustomButton extends StatelessWidget {
           side: BorderSide(width: 1, color: borderColor ?? Color(0xFFF43023)),
         ),
       ),
-      child: Text(
-        btnTxt.tr,
-        style: TextStyle(
-          fontSize: 16.sp,
-          color: txtColor ?? Colors.white,
-          fontWeight: FontWeight.normal,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (leading != null) ...[leading!, 8.w.horizontalSpace],
+          Text(
+            btnTxt.tr,
+            style: TextStyle(
+              fontSize: 16.sp,
+              color: txtColor ?? Colors.white,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+          if (trailing != null) ...[8.w.horizontalSpace, trailing!],
+        ],
       ), // Localized
     );
   }

@@ -46,6 +46,7 @@ class HomeView extends GetView<HomeController> {
         },
         onRequestDeviceLocation: loc.refreshFromDevice,
         showNotificationDot: true,
+        onNotificationTap: controller.onNotificationTap,
       ),
 
       body: SafeArea(

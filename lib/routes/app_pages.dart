@@ -6,6 +6,14 @@ import 'package:ambufast/ride/request_ride_payment_controller.dart';
 import 'package:ambufast/ride/request_ride_payment_view.dart';
 import 'package:ambufast/saved_address/add_change_address_view.dart';
 import 'package:ambufast/saved_address/widgets/set_location_map.dart';
+import 'package:ambufast/service/service_controller.dart';
+import 'package:ambufast/service/service_details_controller.dart';
+import 'package:ambufast/service/service_details_view.dart';
+import 'package:ambufast/service/service_view.dart';
+import 'package:ambufast/trip_track/trip_payment_controller.dart';
+import 'package:ambufast/trip_track/trip_payment_view.dart';
+import 'package:ambufast/trip_track/trip_track_controller.dart';
+import 'package:ambufast/trip_track/trip_track_view.dart';
 import 'package:get/get.dart';
 
 import '../account/account_controller.dart';
@@ -56,6 +64,8 @@ import '../payment_success/payment_success_controller.dart';
 import '../payment_success/payment_success_view.dart';
 import '../profile_details/profile_details_controller.dart';
 import '../profile_details/profile_details_view.dart';
+import '../rating/rating_controller.dart';
+import '../rating/rating_view.dart';
 import '../recover/recover_controller.dart';
 import '../recover/recover_view.dart';
 import '../request_submission_success/request_submission_success_controller.dart';
@@ -72,6 +82,9 @@ import '../support_request/support_request_controller.dart';
 import '../support_request/support_request_view.dart';
 import '../support_request_review/support_request_review_controller.dart';
 import '../support_request_review/support_request_review_view.dart';
+import '../trip_details/trip_details_controller.dart';
+import '../trip_details/trip_details_view.dart';
+import '../trip_track/change_destination_view.dart';
 import '../verify/verify_controller.dart';
 import '../verify/verify_view.dart';
 import 'app_routes.dart';
@@ -428,6 +441,62 @@ class AppPages {
       }),
     ),
 
+    GetPage(
+      name: Routes.rating,
+      page: () => const RatingView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<RatingController>(() => RatingController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.tripDetails,
+      page: () => const TripDetailsView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<TripDetailsController>(() => TripDetailsController());
+      }),
+    ),
+
     GetPage(name: Routes.setLocationMap, page: () => const SetLocationMap()),
+
+    GetPage(
+      name: Routes.tripTrack,
+      page: () => const TripTrackView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<TripTrackController>(() => TripTrackController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.tripPayment,
+      page: () => const TripPaymentView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<TripPaymentController>(() => TripPaymentController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.changeDestination,
+      page: () => const ChangeDestinationView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<TripTrackController>(() => TripTrackController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.service,
+      page: () => const ServiceView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ServiceController>(() => ServiceController());
+      }),
+    ),
+
+    GetPage(
+      name: Routes.serviceDetails,
+      page: () => const ServiceDetailsView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ServiceDetailsController>(() => ServiceDetailsController());
+      }),
+    ),
   ];
 }

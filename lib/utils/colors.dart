@@ -34,3 +34,5 @@ const posititve50 = Color(0xFFE6FAEE);
 const posititve100 = Color(0xFFD0F5E1);
 const posititve300 = Color(0xFF73E2A4);
 const posititve700 = Color(0xFF17723F);
+
+const orange50 = Color(0xFFFFF6E5);

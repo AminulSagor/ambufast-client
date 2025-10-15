@@ -1,4 +1,6 @@
 // lib/routes/app_pages.dart
+import 'package:ambufast/professional/professional_info_controller.dart';
+import 'package:ambufast/professional/professional_info_view.dart';
 import 'package:ambufast/ride/choose_date_time_controller.dart';
 import 'package:ambufast/ride/choose_date_time_view.dart';
 import 'package:ambufast/ride/request_ride_book_view.dart';
@@ -62,6 +64,8 @@ import '../notification/notification_controller.dart';
 import '../notification/notification_view.dart';
 import '../payment_success/payment_success_controller.dart';
 import '../payment_success/payment_success_view.dart';
+import '../professional/professional_info_edit_controller.dart';
+import '../professional/professional_info_edit_view.dart';
 import '../profile_details/profile_details_controller.dart';
 import '../profile_details/profile_details_view.dart';
 import '../rating/rating_controller.dart';
@@ -496,6 +500,27 @@ class AppPages {
       page: () => const ServiceDetailsView(),
       binding: BindingsBuilder(() {
         Get.lazyPut<ServiceDetailsController>(() => ServiceDetailsController());
+      }),
+    ),
+
+    //PROFESSIONAL INFO
+    GetPage(
+      name: Routes.professionalInfo,
+      page: () => const ProfessionalInfoView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ProfessionalInfoController>(
+          () => ProfessionalInfoController(),
+        );
+      }),
+    ),
+
+    GetPage(
+      name: Routes.professionalInfoEdit,
+      page: () => const ProfessionalInfoEditView(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ProfessionalInfoEditController>(
+          () => ProfessionalInfoEditController(),
+        );
       }),
     ),
   ];

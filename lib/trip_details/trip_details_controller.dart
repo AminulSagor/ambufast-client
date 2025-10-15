@@ -1,6 +1,9 @@
 // lib/modules/trip_details/trip_details_controller.dart
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../widgets/modal_sheet_widgets/patient_info_sheet.dart';
 
 enum TripState { upcoming, scheduled, completed, completedNoRating, cancelled }
 
@@ -96,9 +99,9 @@ class TripDetailsController extends GetxController {
     // Pick one:
     // setScenario(TripState.upcoming);
     // setScenario(TripState.scheduled);
-    // setScenario(TripState.completed);
+    setScenario(TripState.completed);
     // setScenario(TripState.completedNoRating);
-    setScenario(TripState.cancelled);
+    // setScenario(TripState.cancelled);
   }
 
   bool get topActionEnabled {
@@ -182,6 +185,24 @@ class TripDetailsController extends GetxController {
   void onRebook() => Get.snackbar('Cancel', 'Trip Rebook requested');
   void callDriver() => Get.snackbar('Call', 'Dialing driver...');
   void copy(String what) => Get.snackbar('Copied', what);
+
+  void onContactTap() {
+    final info = PaitentInfo(
+      name: 'Md Kamrul Hasan',
+      dob: DateTime(1999, 9, 9),
+      phone: '+880 1790 000 000',
+      gender: 'Male',
+      bloodGroup: 'B+',
+      avatarUrl: 'assets/ride_images/rider_image.jpg', // optional
+    );
+
+    Get.bottomSheet(
+      PatientInfoSheet(info: info),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withOpacity(.35),
+    );
+  }
 
   // For testing (e.g., from a debug button or onInit)
 }

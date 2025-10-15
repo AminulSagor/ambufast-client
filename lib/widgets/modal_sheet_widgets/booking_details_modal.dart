@@ -153,24 +153,27 @@ class BookingDetailsModal extends GetView<RequestRideController> {
           SizedBox(height: 8.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Row(
-              children: [
-                Image.asset('assets/ride_icons/money.png'),
-                SizedBox(width: 5.w),
-                Text(
-                  'cash'.tr,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
+            child: InkWell(
+              onTap: controller.onPaymentMethod,
+              child: Row(
+                children: [
+                  Image.asset('assets/ride_icons/money.png'),
+                  SizedBox(width: 5.w),
+                  Text(
+                    'cash'.tr,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                Spacer(),
-                Icon(
-                  Icons.keyboard_arrow_down,
-                  color: Colors.grey.shade700,
-                  size: 16,
-                ),
-              ],
+                  Spacer(),
+                  Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Colors.grey.shade700,
+                    size: 16,
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 16.h),

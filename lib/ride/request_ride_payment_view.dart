@@ -1,4 +1,5 @@
 import 'package:ambufast/routes/app_routes.dart';
+import 'package:ambufast/utils/bottom_sheet_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -87,9 +88,13 @@ class RequestRidePaymentView extends GetView<RequestRidePaymentController> {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: 18.h),
-              _buildHeader(),
-              SizedBox(height: 18.h),
-              _gradientDivider(),
+              bottomSheetHeader(
+                '${'booking_details'.tr} →',
+                showDragHandle: false,
+                showGradientDivider: true,
+              ),
+              // SizedBox(height: 18.h),
+              // // _gradientDivider(),
               SizedBox(height: 16.h),
               _buildInfoTile('confirmation_payment_required'.tr),
               SizedBox(height: 12.h),
@@ -148,45 +153,45 @@ class RequestRidePaymentView extends GetView<RequestRidePaymentController> {
     );
   }
 
-  Widget _gradientDivider() {
-    return Container(
-      height: 2.h,
-      margin: EdgeInsets.symmetric(horizontal: 30.w),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white,
-            Colors.red.shade600,
-            Colors.white,
-          ], // Define your gradient colors
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
-      ),
-    );
-  }
+  // Widget _gradientDivider() {
+  //   return Container(
+  //     height: 2.h,
+  //     margin: EdgeInsets.symmetric(horizontal: 30.w),
+  //     decoration: BoxDecoration(
+  //       gradient: LinearGradient(
+  //         colors: [
+  //           Colors.white,
+  //           Colors.red.shade600,
+  //           Colors.white,
+  //         ], // Define your gradient colors
+  //         begin: Alignment.centerLeft,
+  //         end: Alignment.centerRight,
+  //       ),
+  //     ),
+  //   );
+  // }
 
-  Widget _buildHeader() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25.w),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(),
-          Text(
-            '${'booking_details'.tr} →',
-            style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
-          ),
-          Image.asset(
-            'assets/ride_icons/ticket_detailed.png',
-            fit: BoxFit.cover,
-            height: 20.h,
-          ),
-        ],
-      ),
-    );
-  }
+  // Widget _buildHeader() {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(horizontal: 25.w),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       crossAxisAlignment: CrossAxisAlignment.center,
+  //       children: [
+  //         SizedBox(),
+  //         Text(
+  //           '${'booking_details'.tr} →',
+  //           style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+  //         ),
+  //         Image.asset(
+  //           'assets/ride_icons/ticket_detailed.png',
+  //           fit: BoxFit.cover,
+  //           height: 20.h,
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget _buildInfoTile(String text) {
     return Padding(

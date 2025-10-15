@@ -1,10 +1,11 @@
+import 'package:ambufast/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CustomButton extends StatelessWidget {
   final String btnTxt;
-  final VoidCallback onTap;
+  final void Function()? onTap;
   final Color? btnColor;
   final Color? txtColor;
   final Color? borderColor;
@@ -27,11 +28,11 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
         elevation: 0,
-        backgroundColor: btnColor ?? Color(0xFFF43023),
+        backgroundColor: btnColor ?? primaryBase,
         minimumSize: Size(double.infinity, 44.h), // Responsive height
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
-          side: BorderSide(width: 1, color: borderColor ?? Color(0xFFF43023)),
+          side: BorderSide(width: 1, color: borderColor ?? neutral100),
         ),
       ),
       child: Row(

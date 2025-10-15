@@ -18,6 +18,7 @@ Widget bottomSheetHeader(
   String? subTitle,
   Color? titleColor,
   Color? subTitleColor,
+  Widget? trailing,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,25 +36,39 @@ Widget bottomSheetHeader(
         ),
         SizedBox(height: 12.h),
       ],
-      Text(
-        title.tr,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w600,
-          color: titleColor ?? Color(0xFF1C2130),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Text(
+                    title.tr,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w600,
+                      color: titleColor ?? Color(0xFF1C2130),
+                    ),
+                  ),
+                  if (subTitle != null)
+                    Text(
+                      subTitle.tr,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w400,
+                        color: subTitleColor ?? Color(0xFF1C2130),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            trailing ?? SizedBox(),
+          ],
         ),
       ),
-      if (subTitle != null)
-        Text(
-          subTitle.tr,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w400,
-            color: subTitleColor ?? Color(0xFF1C2130),
-          ),
-        ),
       16.h.verticalSpace,
       if (showGradientDivider) gradientDivider(),
     ],

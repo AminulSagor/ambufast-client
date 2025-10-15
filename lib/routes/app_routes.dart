@@ -51,4 +51,6 @@ abstract class Routes {
 
   static const service = '/service';
   static const serviceDetails = '/service-details';
+  static const professionalInfo = '/professional-info';
+  static const professionalInfoEdit = '/professional-info-edit';
 }

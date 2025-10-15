@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/modal_sheet_widgets/cancel_confirmation_modal.dart';
+import '../widgets/modal_sheet_widgets/payment_method_modal.dart';
 import '../widgets/modal_sheet_widgets/short_info_modal.dart';
 
 class RequestRideController extends GetxController {
@@ -325,6 +326,23 @@ class RequestRideController extends GetxController {
 
   void onSendRequest() {
     fixedModalIndex.value = 1;
+  }
+
+  void onPaymentMethod() async {
+    final result = await Get.bottomSheet<PaymentSelection>(
+      const PaymentMethodModal(
+        bannerAsset: 'assets/ride_images/lowest_fare.png', // optional
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Colors.black.withOpacity(.35),
+    );
+
+    if (result != null) {
+      // Handle the result (store in controller, send to API, etc.)
+      // result.booking  -> PaymentType.online/cash
+      // result.completion -> PaymentType.online/cash
+    }
   }
 
   /// Change destination

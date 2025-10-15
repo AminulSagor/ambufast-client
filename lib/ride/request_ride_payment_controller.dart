@@ -35,11 +35,14 @@ class RequestRidePaymentController extends GetxController {
   }
 
   void processPayment() {
-    Get.back(); // Close the screen
+    // Get.back(); // Close the screen
     Get.dialog(
       PaymentOptionDialogbox(
         onSelect: () {
-          Get.toNamed(Routes.bkashPayment);
+          Get.toNamed(
+            Routes.bkashPayment,
+            arguments: {'paymentFor': 'ride_now'},
+          );
         },
       ),
     );

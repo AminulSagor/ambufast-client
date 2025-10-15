@@ -40,7 +40,10 @@ class TripPaymentController extends GetxController {
     Get.dialog(
       PaymentOptionDialogbox(
         onSelect: () {
-          Get.toNamed(Routes.bkashPayment);
+          Get.toNamed(
+            Routes.bkashPayment,
+            arguments: {'paymentFor': 'ride_complete'},
+          );
         },
       ),
     );

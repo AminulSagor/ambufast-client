@@ -168,7 +168,12 @@ class TripDetailsView extends GetView<TripDetailsController> {
     );
   }
 
-  Widget _row(String k, String v, {bool copyable = false}) {
+  Widget _row(
+    String k,
+    String v, {
+    bool copyable = false,
+    VoidCallback? onTap,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 6.h),
       child: Row(
@@ -179,18 +184,21 @@ class TripDetailsView extends GetView<TripDetailsController> {
               style: TextStyle(color: Colors.black54, fontSize: 14.sp),
             ),
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(v, style: TextStyle(fontSize: 14.sp)),
-              if (copyable) ...[
-                SizedBox(width: 6.w),
-                GestureDetector(
-                  onTap: () => controller.copy(v),
-                  child: const Icon(Icons.copy_rounded, size: 16),
-                ),
+          GestureDetector(
+            onTap: onTap,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(v, style: TextStyle(fontSize: 14.sp)),
+                if (copyable) ...[
+                  SizedBox(width: 6.w),
+                  GestureDetector(
+                    onTap: () => controller.copy(v),
+                    child: const Icon(Icons.copy_rounded, size: 16),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ],
       ),
@@ -335,7 +343,11 @@ class TripDetailsView extends GetView<TripDetailsController> {
             ),
 
           // Remaining trip details
-          _row('trip.field.contact'.tr, controller.contact.value),
+          _row(
+            'trip.field.contact'.tr,
+            controller.contact.value,
+            onTap: controller.onContactTap,
+          ),
           _row('trip.field.ambulance'.tr, controller.ambulance.value),
           _row('trip.field.type'.tr, controller.tripType.value),
           SizedBox(height: 8.h),

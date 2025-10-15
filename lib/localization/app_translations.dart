@@ -523,6 +523,17 @@ class AppTranslations extends Translations {
       'pay_with_nagad': 'Get 10% discount',
       'pay_with_city_bank': 'Get 10% discount',
       'visa_master_card': 'Visa/Master Card',
+      'add_another_vehicle': 'Add another vehicle to this trip',
+      'trip_details': 'Trip details',
+      'details': 'Details',
+      'rate_of_driver': 'Rate of driver',
+      'rebook_this_trip': 'Rebook this trip',
+      'booking_payment': 'Booking Payment',
+      'completion_payment': 'Completion Payment',
+      'online_payment': 'Online Payment',
+      'payment_methods_subtitle': 'bKash, Visa, Master Card, others',
+      'cash_payment': 'Cash Payment',
+      'cash_payment_subtitle': 'Pay with hand to hand',
 
       //lowest fare
       'freezing_van': 'Freezing van',
@@ -834,6 +845,81 @@ class AppTranslations extends Translations {
       'price_1200': '৳ 1200',
       'price_0': '৳ 0',
       'book_now_button': 'Book now',
+
+      'dob_label': 'Date of birth:',
+
+      'gender_label': 'Gender:',
+      'blood_group_label': 'Blood Group:',
+
+      'professional_info_title': 'Professional Information',
+      'affiliation_type': 'Affiliation Type',
+      'org_business_name': 'Organisation/Business Name',
+      'your_role': 'Your Role',
+      'zone_area': 'Zone / Area of Operation',
+      'work_id': 'Work ID',
+      'nid_front': 'Front Side of National Id Card',
+      'nid_back': 'Back Side of National Id Card',
+      'save': 'Save',
+      'saving': 'Saving...',
+
+      'enter_affiliation_title': 'Enter affiliation',
+      'enter_affiliation_hint': 'Type your affiliation',
+      'aff_hospital': 'Hospital',
+      'aff_pharmacy': 'Pharmacy',
+      'aff_ngo_clinic': 'NGO/Clinic',
+      'aff_chv': 'Community Health Volunteer',
+      'aff_other': 'Other (specify manually)',
+
+      //Professional
+      'edit_professional_info': 'Edit Professional Information',
+      'professional_information': 'Professional Information',
+      'affiliation_type_star': 'Affiliation Type*',
+      'affiliation_details': 'Affiliation Details',
+      'org_business_name_star': 'Organisation/Business Name*',
+      'your_role_star': 'Your Role*',
+      'zone_area_star': 'Zone / Area Of Operation*',
+      'org_name_hint': 'Enter organisation name',
+      'role_hint': 'Enter your role',
+      'zone_hint': 'Enter zone/Area',
+      'document_uploads': 'Document Uploads',
+      'work_id_upload_title': 'Work ID Photo Upload',
+      'work_id_upload_desc': 'Add your Work ID photo here, and you can upload…',
+      'drag_or_browse':
+          'Drag your file(s) or browse\nMax 10 MB files are allowed',
+      'only_img_10mb': 'Only support .jpg, .png files',
+      'nid_front_star': 'Front Side of National Id Card*',
+      'nid_back_star': 'Back Side of National Id Card*',
+      'nid_front_hint': 'Click to Upload Front Side of Card',
+      'nid_front_maxnote': '(Max. File size: 25 MB)',
+      'nid_back_hint': 'Click to Upload Back Side of Card',
+      'nid_back_maxnote': '(Max. File size: 25 MB)',
+      'uploaded_success': 'Uploaded successfully',
+
+      'confirm_change_title':
+          'Are you sure you want to Changing Your Professional Information?',
+      'important_notes': 'Important Notes:',
+      'note_1':
+          'Your profile will be temporarily under review after this change.',
+      'note_3':
+          'Submitting false or misleading information may lead to account suspension.',
+      'submit_for_review': 'Submit for Review',
+      'go_back': 'Go Back',
+      'confirm_change_intro':
+          'You are about to update your Work ID and National ID. Please ensure that:',
+      'confirm_point_1': 'The documents belong to you and are valid.',
+      'confirm_point_2':
+          'All details (ID number, name, etc.) are correct and clearly readable.',
+      'confirm_point_3':
+          'Upload a clear photo/scan — National ID (front & back) and Work ID.',
+      'note_2':
+          'You may not receive trip requests until your new documents are approved.',
+
+      'under_review_title': 'Your documents are under review',
+      'under_review_desc':
+          'We’re reviewing your submitted Work ID and National ID. This usually takes a short while. You can’t edit details until the review is complete.',
+      'docs_not_approved_title': 'Your documents are not approved',
+      'docs_not_approved_desc':
+          "Your submitted details are invalid or couldn't be approved. Please resubmit valid Work ID and National ID.",
     },
 
     // ======================= BANGLA =======================
@@ -1341,6 +1427,17 @@ class AppTranslations extends Translations {
       'pay_with_nagad': '১০% ছাড় পান',
       'pay_with_city_bank': '১০% ছাড় পান',
       'visa_master_card': 'ভিসা/মাস্টার কার্ড',
+      'add_another_vehicle': 'Add another vehicle to this trip',
+      'trip_details': 'Trip details',
+      'details': 'Details',
+      'rate_of_driver': 'Rate of driver',
+      'rebook_this_trip': 'Rebook this trip',
+      'booking_payment': 'বুকিং পেমেন্ট',
+      'completion_payment': 'সমাপ্তির অর্থ প্রদান',
+      'online_payment': 'অনলাইন পেমেন্ট',
+      'payment_methods_subtitle': 'বিকাশ, ভিসা, মাস্টার কার্ড, অন্যান্য',
+      'cash_payment': 'নগদ অর্থ প্রদান',
+      'cash_payment_subtitle': 'হাতে হাতে টাকা দিন',
 
       //lowest fare
       'freezing_van': 'ফ্রিজিং ভ্যান',
@@ -1653,6 +1750,81 @@ class AppTranslations extends Translations {
       'price_1200': '৳ ১২০০',
       'price_0': '৳ ০',
       'book_now_button': 'এখন বুক করুন',
+
+      'dob_label': 'জন্ম তারিখ:',
+
+      'gender_label': 'লিঙ্গ:',
+      'blood_group_label': 'রক্তের গ্রুপ:',
+
+      //Professional
+      'professional_info_title': 'পেশাদার তথ্য',
+      'affiliation_type': 'অধিভুক্তির ধরন',
+      'org_business_name': 'Organisation/Business Name',
+      'your_role': 'তোমার ভূমিকা',
+      'zone_area': 'কার্যক্ষেত্র / অঞ্চল',
+      'work_id': 'কর্মস্থলের আইডি',
+      'nid_front': 'জাতীয় পরিচয়পত্রের সামনের দিক',
+      'nid_back': 'জাতীয় পরিচয়পত্রের পেছনের দিক',
+      'save': 'সংরক্ষণ করুন',
+      'saving': 'সংরক্ষণ হচ্ছে...',
+
+      'enter_affiliation_title': 'অধিভুক্তি লিখুন',
+      'enter_affiliation_hint': 'আপনার অধিভুক্তি টাইপ করুন',
+
+      'aff_hospital': 'হাসপাতাল',
+      'aff_pharmacy': 'ফার্মেসি',
+      'aff_ngo_clinic': 'এনজিও/ক্লিনিক',
+      'aff_chv': 'কমিউনিটি স্বাস্থ্য স্বেচ্ছাসেবক',
+      'aff_other': 'অন্যান্য (ম্যানুয়ালি উল্লেখ করুন)',
+
+      'edit_professional_info': 'এডিট প্রফেশনাল ইনফরমেশন',
+      'professional_information': 'পেশাদার তথ্য',
+      'affiliation_type_star': 'অধিভুক্তির ধরন*',
+      'affiliation_details': 'অধিভুক্তির বিস্তারিত',
+      'org_business_name_star': 'প্রতিষ্ঠান/ব্যবসার নাম*',
+      'your_role_star': 'আপনার ভূমিকা*',
+      'zone_area_star': 'জোন / এরিয়া*',
+      'org_name_hint': 'প্রতিষ্ঠানের নাম লিখুন',
+      'role_hint': 'আপনার ভূমিকা লিখুন',
+      'zone_hint': 'জোন/এরিয়া লিখুন',
+      'document_uploads': 'ডকুমেন্ট আপলোডস',
+      'work_id_upload_title': 'কর্মস্থলের আইডি আপলোড',
+      'work_id_upload_desc': 'এখানে আপনার আইডি ছবি যোগ করুন, এবং আপলোড…',
+      'drag_or_browse':
+          'আপনার ফাইল(গুলি) ড্র্যাগ করুন বা ব্রাউজ করুন\nসর্বোচ্চ ১০ এমবি ফাইল অনুমোদিত',
+      'only_img_10mb': 'শুধু .jpg, .png সমর্থিত',
+      'nid_front_star': 'জাতীয় পরিচয়পত্রের সামনের দিক*',
+      'nid_back_star': 'জাতীয় পরিচয়পত্রের পেছনের দিক*',
+      'nid_front_hint': 'কার্ডের সামনের দিক আপলোড করতে ক্লিক করুন',
+      'nid_front_maxnote': '(সর্বোচ্চ ফাইল সাইজ: ২৫ এমবি)',
+      'nid_back_hint': 'কার্ডের পেছনের দিক আপলোড করতে ক্লিক করুন',
+      'nid_back_maxnote': '(সর্বোচ্চ ফাইল সাইজ: ২৫ এমবি)',
+
+      'uploaded_success': 'সফলভাবে আপলোড হয়েছে',
+      'confirm_change_title':
+          'আপনি কি নিশ্চিত যে আপনার পেশাগত তথ্য পরিবর্তন করতে চান?',
+
+      'important_notes': 'গুরুত্বপূর্ণ নোট:',
+      'note_1':
+          'এই পরিবর্তনের পরে আপনার প্রোফাইল সাময়িকভাবে পর্যালোচনার অধীনে থাকবে।',
+      'note_3': 'ভুল বা বিভ্রান্তিকর তথ্য জমা দিলে অ্যাকাউন্ট স্থগিত হতে পারে।',
+      'submit_for_review': 'পর্যালোচনার জন্য জমা দিন',
+      'go_back': 'ফিরে যান',
+      'confirm_change_intro':
+          'আপনি আপনার ওয়ার্ক আইডি এবং জাতীয় পরিচয়পত্র (NID) আপডেট করতে চলেছেন। অনুগ্রহ করে নিশ্চিত করুন:',
+      'confirm_point_1': 'ডকুমেন্টগুলো আপনার এবং বৈধ।',
+      'confirm_point_2':
+          'সব তথ্য (আইডি নম্বর, নাম ইত্যাদি) সঠিক এবং স্পষ্টভাবে পড়া যায়।',
+      'confirm_point_3':
+          'স্পষ্ট ছবি/স্ক্যান আপলোড করা হয়েছে — জাতীয় পরিচয়পত্রের সামনে ও পেছন, এবং ওয়ার্ক আইডি।',
+      'note_2':
+          'আপনার নতুন ডকুমেন্ট অনুমোদিত না হওয়া পর্যন্ত আপনি ট্রিপ অনুরোধ নাও পেতে পারেন।',
+      'under_review_title': 'আপনার ডকুমেন্ট যাচাই করা হচ্ছে',
+      'under_review_desc':
+          'আপনার জমা দেওয়া ওয়ার্ক আইডি এবং জাতীয় পরিচয়পত্র আমরা যাচাই করছি। এটি সম্পন্ন হতে কিছু সময় লাগতে পারে। যাচাই চলাকালীন আপনি তথ্য সম্পাদনা করতে পারবেন না।',
+      'docs_not_approved_title': 'আপনার ডকুমেন্ট অনুমোদিত নয়',
+      'docs_not_approved_desc':
+          'আপনার জমা দেওয়া তথ্য ভুল/অসম্পূর্ণ হওয়ায় অনুমোদিত হয়নি। অনুগ্রহ করে বৈধ ওয়ার্ক আইডি এবং জাতীয় পরিচয়পত্র পুনরায় জমা দিন।',
     },
   };
 }
